@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE WORLD OF JELLY — Press On Nails × Gel X · Noisiel</title>
+<meta name="description" content="Press On Nails × Gel X à Noisiel (77), à 2 min du RER A. Réserve ton créneau en 2 min, sans DM : prestation, créneau, photos, acompte — tout est là.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M14 46 Q12 50 17 50 L47 50 Q52 50 50 46 L44 20 Q42 12 32 12 Q22 12 20 20 Z' fill='%23E0338C'/%3E%3C/svg%3E">
+<style>
+:root{
+  --jelly:#E0338C;
+  --jelly-deep:#C2186F;
+  --jelly-dark:#8E0F4F;
+  --blush:#FFD9EC;
+  --blush-2:#FFC3E1;
+  --cream:#FFF6FA;
+  --white:#FFFFFF;
+  --ink:#3A1024;
+  --ink-soft:#7A4560;
+  --grad:linear-gradient(135deg,#FF9ECF 0%,#E0338C 100%);
+  --grad-soft:linear-gradient(160deg,#FFE3F1 0%,#FFC3E1 100%);
+  --radius:26px;
+  --shadow:0 14px 40px rgba(224,51,140,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Baloo 2',cursive}
+::selection{background:var(--jelly);color:#fff}
+
+/* ---------- blobs de fond ---------- */
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none;z-index:0}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 22px;
+  background:rgba(255,246,250,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(224,51,140,.12);
+}
+.logo-mini{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mini svg{width:34px;height:34px}
+.logo-mini span{font-family:'Baloo 2';font-weight:800;font-size:20px;color:var(--jelly-deep);letter-spacing:.5px}
+.btn{
+  display:inline-block;border:none;cursor:pointer;text-decoration:none;text-align:center;
+  font-family:'Baloo 2';font-weight:700;font-size:16px;
+  padding:12px 26px;border-radius:999px;transition:transform .2s,box-shadow .2s;
+}
+.btn-jelly{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(224,51,140,.35)}
+.btn-jelly:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(224,51,140,.45)}
+.btn-ghost{background:#fff;color:var(--jelly-deep);border:2px solid var(--blush-2)}
+.btn-ghost:hover{border-color:var(--jelly);transform:translateY(-2px)}
+header .btn{padding:9px 20px;font-size:15px}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:110px 20px 80px;
+  background:
+    radial-gradient(1100px 600px at 85% -10%,rgba(255,158,207,.55),transparent 60%),
+    radial-gradient(900px 500px at -10% 90%,rgba(255,195,225,.6),transparent 55%),
+    var(--cream);
+}
+.hero-logo{width:130px;height:auto;animation:wobble 5s ease-in-out infinite;filter:drop-shadow(0 16px 30px rgba(224,51,140,.35))}
+@keyframes wobble{0%,100%{transform:rotate(-2.5deg) scale(1)}25%{transform:rotate(2deg) scale(1.03)}50%{transform:rotate(-1.5deg) scale(.99)}75%{transform:rotate(2.5deg) scale(1.02)}}
+.hero h1{
+  font-size:clamp(46px,9vw,104px);font-weight:800;line-height:.95;
+  color:var(--jelly-deep);margin:18px 0 6px;letter-spacing:-1px;
+}
+.hero h1 .outline{
+  color:transparent;-webkit-text-stroke:2.5px var(--jelly);
+  display:block;
+}
+.hero .anti{
+  display:inline-block;margin:10px 0 16px;padding:8px 22px;border-radius:999px;
+  background:var(--ink);color:#FFD9EC;font-family:'Baloo 2';font-weight:700;
+  font-size:clamp(14px,2.4vw,19px);letter-spacing:2.5px;transform:rotate(-1.5deg);
+}
+.hero p.sub{font-size:clamp(16px,2.6vw,20px);color:var(--ink-soft);max-width:560px;margin:0 auto 30px;font-weight:600}
+.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:3px;color:var(--jelly);font-weight:800;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--jelly);color:#fff;overflow:hidden;padding:12px 0;transform:rotate(-1deg);margin:-14px -10px 0;position:relative;z-index:2}
+.marquee-inner{display:flex;gap:0;white-space:nowrap;animation:scroll 28s linear infinite;font-family:'Baloo 2';font-weight:700;font-size:17px;letter-spacing:2px}
+.marquee-inner span{padding:0 14px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative;padding:90px 20px}
+.wrap{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.kicker{font-size:13px;letter-spacing:4px;font-weight:800;color:var(--jelly);text-transform:uppercase;margin-bottom:10px}
+.h2{font-size:clamp(32px,5.6vw,56px);font-weight:800;color:var(--jelly-dark);line-height:1.02;margin-bottom:16px}
+.lead{font-size:17px;color:var(--ink-soft);max-width:640px;font-weight:600}
+
+/* ---------- insta strip ---------- */
+.insta-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.grid-insta{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{
+  aspect-ratio:1/1;border-radius:20px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:14px;
+  color:#fff;cursor:pointer;transition:transform .25s;
+}
+.tile:hover{transform:translateY(-4px) rotate(-.5deg)}
+.tile b{font-family:'Baloo 2';font-size:15px;letter-spacing:1px;line-height:1.1}
+.tile small{font-size:11.5px;opacity:.85;font-weight:600}
+.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:38px;opacity:.55}
+.tile::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(58,16,36,.55),transparent 55%)}
+.tile>*{position:relative;z-index:1}
+
+/* ---------- douleur / avant-maintenant ---------- */
+.pain{background:var(--ink);color:#fff;transform:rotate(0);position:relative;overflow:hidden}
+.pain .kicker{color:#FF9ECF}
+.pain .h2{color:#fff}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;align-items:start}
+.bubble{
+  background:var(--jelly);border-radius:26px 26px 26px 6px;padding:24px 26px;
+  font-weight:600;font-size:16px;line-height:1.55;position:relative;
+  box-shadow:0 16px 40px rgba(224,51,140,.35);transform:rotate(-1deg);
+}
+.bubble .tag{position:absolute;top:-14px;left:18px;background:#fff;color:var(--jelly-deep);font-family:'Baloo 2';font-weight:800;font-size:12px;letter-spacing:2px;padding:4px 14px;border-radius:999px}
+.bubble s{opacity:.85}
+.bubble .cross{position:absolute;top:-22px;right:-10px;font-size:44px;transform:rotate(12deg)}
+.steps{display:flex;flex-direction:column;gap:22px}
+.step{display:flex;gap:18px;align-items:flex-start}
+.step .num{
+  font-family:'Baloo 2';font-weight:800;font-size:22px;color:var(--jelly-dark);
+  background:var(--grad-soft);min-width:52px;height:52px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+}
+.step h3{font-size:19px;margin-bottom:4px;color:#FFD9EC}
+.step p{font-size:15px;opacity:.75;font-weight:600}
+
+/* ---------- lookbook ---------- */
+.grid-look{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-look .tile:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+
+/* ---------- tarifs ---------- */
+.tarifs{background:linear-gradient(180deg,var(--cream),#FFEAF4)}
+.tarif-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:36px}
+.tarif-card{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+.tarif-card h3{font-size:24px;color:var(--jelly-deep);letter-spacing:1px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.trow{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1.5px dashed var(--blush-2)}
+.trow:last-child{border-bottom:none}
+.trow .n{font-weight:700;font-size:16px}
+.trow .d{font-size:12.5px;color:var(--ink-soft);font-weight:600}
+.trow .p{font-family:'Baloo 2';font-weight:800;font-size:20px;color:var(--jelly);white-space:nowrap}
+.nailart-note{
+  grid-column:1/-1;background:var(--ink);color:#fff;border-radius:var(--radius);
+  padding:26px 30px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between;
+}
+.nailart-note b{font-family:'Baloo 2';font-size:21px;color:#FF9ECF;letter-spacing:1px}
+.nailart-note p{font-size:14.5px;opacity:.8;font-weight:600;max-width:520px}
+
+/* ---------- simulateur ---------- */
+.resa{background:var(--ink);color:#fff;overflow:hidden}
+.resa .kicker{color:#FF9ECF}
+.resa .h2{color:#fff}
+.resa-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:34px;margin-top:44px;align-items:start}
+.panel{display:flex;flex-direction:column;gap:34px}
+.qnum{font-family:'Baloo 2';font-weight:800;font-size:14px;letter-spacing:3px;color:#FF9ECF;margin-bottom:14px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,158,207,.25);
+  border-radius:18px;padding:16px 18px;cursor:pointer;transition:all .2s;
+  display:flex;justify-content:space-between;gap:10px;align-items:center;
+}
+.opt:hover{border-color:var(--jelly);transform:translateY(-2px)}
+.opt.on{background:var(--jelly);border-color:var(--jelly);box-shadow:0 10px 26px rgba(224,51,140,.4)}
+.opt .l b{font-family:'Baloo 2';font-size:15.5px;display:block;line-height:1.15}
+.opt .l small{font-size:12px;opacity:.7;font-weight:600}
+.opt .pr{font-family:'Baloo 2';font-weight:800;font-size:17px;white-space:nowrap;color:#FF9ECF}
+.opt.on .pr{color:#fff}
+.days{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.day{
+  min-width:74px;text-align:center;padding:12px 8px;border-radius:16px;cursor:pointer;
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,158,207,.25);transition:all .2s;flex-shrink:0;
+}
+.day.on{background:var(--jelly);border-color:var(--jelly)}
+.day .dw{font-size:11px;letter-spacing:1.5px;font-weight:800;opacity:.7;text-transform:uppercase}
+.day .dn{font-family:'Baloo 2';font-weight:800;font-size:22px}
+.slots{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.slot{
+  padding:10px 20px;border-radius:999px;cursor:pointer;font-weight:800;font-size:14.5px;
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,158,207,.25);transition:all .2s;
+}
+.slot.on{background:var(--jelly);border-color:var(--jelly)}
+.slot.off{opacity:.28;cursor:not-allowed;text-decoration:line-through}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;letter-spacing:1.5px;font-weight:800;color:#FF9ECF;text-transform:uppercase}
+.field input{
+  background:rgba(255,255,255,.07);border:2px solid rgba(255,158,207,.25);border-radius:14px;
+  padding:13px 16px;color:#fff;font-family:'Nunito';font-weight:700;font-size:15px;outline:none;transition:border .2s;
+}
+.field input:focus{border-color:var(--jelly)}
+.field input::placeholder{color:rgba(255,255,255,.35)}
+.age-err{display:none;font-size:13px;font-weight:700;color:#FF9ECF;margin-top:8px}
+.uploads{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.up{
+  border:2px dashed rgba(255,158,207,.4);border-radius:18px;padding:22px 16px;text-align:center;
+  cursor:pointer;transition:all .2s;position:relative;overflow:hidden;min-height:130px;
+  display:flex;flex-direction:column;justify-content:center;gap:6px;
+}
+.up:hover{border-color:var(--jelly);background:rgba(224,51,140,.08)}
+.up .ico{font-size:30px}
+.up b{font-family:'Baloo 2';font-size:15px}
+.up small{font-size:12px;opacity:.65;font-weight:600}
+.up img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.up .ok-badge{position:absolute;top:8px;right:8px;background:var(--jelly);border-radius:999px;padding:4px 12px;font-size:11px;font-weight:800;display:none}
+.up.done .ok-badge{display:block}
+.up input{display:none}
+
+/* devis */
+.devis{
+  background:#fff;color:var(--ink);border-radius:var(--radius);padding:30px;
+  position:sticky;top:90px;box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+.devis h3{font-size:22px;color:var(--jelly-deep);margin-bottom:18px;letter-spacing:1px}
+.dline{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;font-weight:700;padding:9px 0;border-bottom:1.5px dashed var(--blush-2)}
+.dline span:last-child{font-family:'Baloo 2';font-weight:800;color:var(--jelly-deep);text-align:right}
+.dline.muted span{color:var(--ink-soft);font-weight:600;font-size:13px}
+.dtotal{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 4px}
+.dtotal b{font-family:'Baloo 2';font-size:16px;letter-spacing:1px}
+.dtotal .amt{font-family:'Baloo 2';font-weight:800;font-size:40px;color:var(--jelly)}
+.acompte-line{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--ink-soft);margin-bottom:18px}
+.acompte-line b{color:var(--jelly-deep)}
+.devis .btn{width:100%;font-size:17px;padding:16px}
+.devis .pay-note{text-align:center;font-size:11.5px;color:var(--ink-soft);font-weight:600;margin-top:10px}
+.devis .empty{font-size:14px;color:var(--ink-soft);font-weight:600;text-align:center;padding:14px 0}
+
+/* ---------- règles ---------- */
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.rule{background:#fff;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(224,51,140,.1)}
+.rule .ico{font-size:26px;margin-bottom:10px}
+.rule b{font-family:'Baloo 2';font-size:16.5px;color:var(--jelly-deep);display:block;margin-bottom:6px}
+.rule p{font-size:13.5px;color:var(--ink-soft);font-weight:600;line-height:1.5}
+
+/* ---------- press-on teaser ---------- */
+.teaser{background:var(--grad);color:#fff;border-radius:var(--radius);padding:44px 40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:var(--shadow)}
+.teaser .soon{font-size:12px;letter-spacing:3px;font-weight:800;background:rgba(255,255,255,.2);padding:5px 14px;border-radius:999px}
+.teaser h3{font-size:clamp(24px,4vw,36px);margin:12px 0 8px}
+.teaser p{font-weight:600;opacity:.9;max-width:480px;font-size:15px}
+
+/* ---------- FAQ ---------- */
+.faq-item{background:#fff;border-radius:18px;margin-bottom:12px;overflow:hidden;box-shadow:0 6px 18px rgba(224,51,140,.08)}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:20px 24px;font-family:'Baloo 2';font-weight:700;font-size:17px;color:var(--ink);
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.faq-q .plus{color:var(--jelly);font-size:24px;transition:transform .3s}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 24px}
+.faq-item.open .faq-a{max-height:220px;padding-bottom:20px}
+.faq-a p{font-size:14.5px;color:var(--ink-soft);font-weight:600;line-height:1.6}
+
+/* ---------- avis ---------- */
+.avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.avis{background:#fff;border-radius:22px;padding:26px;box-shadow:0 8px 24px rgba(224,51,140,.1)}
+.avis .who{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.avis .pp{width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-weight:800;color:#fff;font-size:18px}
+.avis b{font-family:'Baloo 2';font-size:16px;display:block}
+.avis small{font-size:12px;color:var(--ink-soft);font-weight:600}
+.stars{color:var(--jelly);letter-spacing:2px;margin-bottom:8px;font-size:14px}
+.avis p{font-size:14px;color:var(--ink-soft);font-weight:600;line-height:1.6}
+.illu-note{text-align:center;font-size:12px;color:var(--ink-soft);font-weight:600;margin-top:22px;font-style:italic}
+
+/* ---------- localisation ---------- */
+.loc{background:var(--ink);color:#fff;text-align:center}
+.loc .h2{color:#fff}
+.loc .rer{
+  display:inline-flex;align-items:center;gap:10px;background:#E2231A;color:#fff;
+  font-family:'Baloo 2';font-weight:800;padding:10px 24px;border-radius:999px;font-size:17px;margin:18px 0;
+}
+.loc .rer .badge{background:#fff;color:#E2231A;border-radius:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.loc p{opacity:.75;font-weight:600;max-width:480px;margin:0 auto 26px}
+
+/* ---------- footer ---------- */
+footer{background:var(--jelly-dark);color:#fff;padding:60px 20px 120px;text-align:center}
+footer .flogo{width:70px;margin-bottom:14px;opacity:.95}
+footer .fname{font-family:'Baloo 2';font-weight:800;font-size:24px;letter-spacing:1px}
+footer .fsub{font-size:13.5px;opacity:.7;font-weight:600;margin:8px 0 18px}
+footer .fsoc{display:flex;gap:14px;justify-content:center;margin-bottom:26px}
+footer .fsoc a{color:#fff;text-decoration:none;background:rgba(255,255,255,.12);padding:10px 20px;border-radius:999px;font-weight:800;font-size:13.5px;transition:background .2s}
+footer .fsoc a:hover{background:rgba(255,255,255,.25)}
+footer .demo{font-size:11.5px;opacity:.55;font-weight:600;letter-spacing:1px}
+
+/* ---------- sticky bar ---------- */
+.sticky-bar{
+  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:99;
+  background:#fff;border-radius:999px;box-shadow:0 16px 50px rgba(58,16,36,.3);
+  display:flex;align-items:center;gap:16px;padding:10px 12px 10px 24px;
+  width:min(480px,calc(100% - 28px));justify-content:space-between;
+}
+.sticky-bar .sb-devis{display:flex;flex-direction:column;line-height:1.1}
+.sticky-bar .sb-devis small{font-size:10px;letter-spacing:2px;font-weight:800;color:var(--ink-soft)}
+.sticky-bar .sb-devis b{font-family:'Baloo 2';font-weight:800;font-size:20px;color:var(--jelly)}
+.sticky-bar .btn{padding:11px 22px;font-size:14.5px;white-space:nowrap}
+
+/* ---------- modal ---------- */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(58,16,36,.75);backdrop-filter:blur(6px);
+  z-index:200;display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-bg.show{display:flex}
+.modal{
+  background:#fff;border-radius:30px;max-width:460px;width:100%;padding:36px;
+  text-align:center;color:var(--ink);max-height:90svh;overflow-y:auto;
+  animation:pop .35s cubic-bezier(.2,1.4,.4,1);
+}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.modal .big{font-size:52px;margin-bottom:8px}
+.modal h3{font-size:26px;color:var(--jelly-deep);margin-bottom:8px}
+.modal .mrecap{background:var(--cream);border-radius:18px;padding:18px 20px;margin:20px 0;text-align:left}
+.modal .mrecap .dline{font-size:13.5px}
+.modal p.mnote{font-size:13px;color:var(--ink-soft);font-weight:600;line-height:1.6;margin-bottom:18px}
+.modal .btn{width:100%}
+.modal .close-x{margin-top:12px;background:none;border:none;color:var(--ink-soft);font-weight:700;cursor:pointer;font-size:13px}
+.modal .ref{font-family:'Baloo 2';font-weight:800;color:var(--jelly);letter-spacing:2px;font-size:14px}
+.spin{width:44px;height:44px;border-radius:50%;border:5px solid var(--blush-2);border-top-color:var(--jelly);animation:rot 1s linear infinite;margin:20px auto}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .pain-grid,.tarif-cols,.resa-grid{grid-template-columns:1fr}
+  .grid-insta{grid-template-columns:repeat(2,1fr)}
+  .rules-grid{grid-template-columns:1fr 1fr}
+  .avis-grid{grid-template-columns:1fr}
+  .devis{position:static}
+  .grid-look{grid-template-columns:repeat(2,1fr)}
+  section{padding:70px 16px}
+}
+@media(max-width:560px){
+  .opts,.fields,.uploads{grid-template-columns:1fr}
+  .rules-grid{grid-template-columns:1fr}
+  header .btn{font-size:13px;padding:8px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <a class="logo-mini" href="#top">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="jg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9ECF"/><stop offset="1" stop-color="#D6247A"/></linearGradient></defs>
+      <path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="url(#jg1)"/>
+      <path d="M24 15 Q26 12 29 13 L27 24 24 24 Z" fill="#fff" opacity=".55"/>
+      <ellipse cx="40" cy="17" rx="3" ry="4.5" fill="#fff" opacity=".5" transform="rotate(15 40 17)"/>
+    </svg>
+    <span>JELLY</span>
+  </a>
+  <a class="btn btn-jelly" href="#reservation">Réserver →</a>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <svg class="hero-logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="jg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9ECF"/><stop offset="1" stop-color="#D6247A"/></linearGradient></defs>
+    <path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="url(#jg2)"/>
+    <path d="M24 15 Q26 12 29 13 L27 24 24 24 Z" fill="#fff" opacity=".55"/>
+    <ellipse cx="40" cy="17" rx="3" ry="4.5" fill="#fff" opacity=".5" transform="rotate(15 40 17)"/>
+  </svg>
+  <h1>THE WORLD OF<span class="outline">JELLY</span></h1>
+  <div class="anti">💅 ANTI BASIC NAILS</div>
+  <p class="sub">Press On Nails × Gel X · Noisiel (77), à 2 min du RER A.<br>Faire ses ongles c'est un luxe — le réserver prend 2 minutes.</p>
+  <div class="cta-row">
+    <a class="btn btn-jelly" href="#reservation">Réserver en 2 min — sans DM</a>
+    <a class="btn btn-ghost" href="#lookbook">Voir le lookbook</a>
+  </div>
+  <div class="scroll-hint">▼ SCROLLE</div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee"><div class="marquee-inner">
+  <span>PRESS ON</span><span>·</span><span>GEL X</span><span>·</span><span>NAIL ART</span><span>·</span><span>3D & CHARMS</span><span>·</span><span>NOISIEL · 2 MIN RER A</span><span>·</span><span>ANTI BASIC NAILS</span><span>·</span>
+  <span>PRESS ON</span><span>·</span><span>GEL X</span><span>·</span><span>NAIL ART</span><span>·</span><span>3D & CHARMS</span><span>·</span><span>NOISIEL · 2 MIN RER A</span><span>·</span><span>ANTI BASIC NAILS</span><span>·</span>
+</div></div>
+
+<!-- ================= INSTA ================= -->
+<section>
+  <div class="wrap">
+    <div class="insta-head">
+      <div>
+        <div class="kicker">@theworldof_jelly · 9,5k followers</div>
+        <h2 class="h2">SON UNIVERS</h2>
+      </div>
+      <a class="btn btn-ghost" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">Suivre ↗</a>
+    </div>
+    <div class="grid-insta">
+      <div class="tile" style="background:linear-gradient(135deg,#E0338C,#8E0F4F)"><div class="ph">🦋</div><b>3D BUTTERFLY</b><small>relief sculpté · charms</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#FF9ECF,#E0338C)"><div class="ph">🎨</div><b>AIRBRUSH</b><small>dégradés multi</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#3A1024,#C2186F)"><div class="ph">🖤</div><b>TATTOO INK</b><small>fine line · dessin</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#FFC3E1,#D6247A)"><div class="ph">💎</div><b>CHARMS & STRASS</b><small>bijoux d'ongles</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#C2186F,#3A1024)"><div class="ph">🌊</div><b>PAYSAGES</b><small>fresques main levée</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#FF9ECF,#C2186F)"><div class="ph">🍓</div><b>JELLY GLOSS</b><small>transparence · pop</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#D6247A,#FF9ECF)"><div class="ph">🐄</div><b>PRINTS</b><small>animalier · fun</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#8E0F4F,#E0338C)"><div class="ph">✨</div><b>FRENCH REVISITÉ</b><small>classique, en mieux</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOULEUR ================= -->
+<section class="pain">
+  <div class="wrap">
+    <div class="kicker">La fin du DM galère</div>
+    <h2 class="h2">FINI LE « BONJOUR, JE SOUHAITERAIS PRENDRE RDV LE ../.. »</h2>
+    <p class="lead" style="color:rgba(255,255,255,.7)">Avant : nom, prénom, âge, créneau, photo de tes ongles, prestation, moodboard… le tout en 6 messages, pendant qu'elle pose des capsules. Maintenant : tout est ici, en une fois.</p>
+    <div class="pain-grid">
+      <div>
+        <div class="bubble">
+          <span class="tag">AVANT — EN DM 💀</span>
+          <span class="cross">❌</span>
+          <s>« Bonjour, je m'appelle …, j'ai .. ans et je souhaiterais prendre rdv le ../.. Voici une photo de mes ongles et mes inspirations. Merci ! »</s>
+          <br><br><em style="opacity:.9;font-size:14px">…et ensuite : l'attente de la réponse, l'acompte à la main, le créneau déjà pris. 😮‍💨</em>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><div><h3>Choisis ta presta & ton créneau</h3><p>Gel X ou ongles naturels, ton prix s'affiche direct. Tu vois les créneaux libres en live.</p></div></div>
+        <div class="step"><div class="num">02</div><div><h3>Dépose tes photos direct dans la résa</h3><p>Tes ongles actuels + ton moodboard nail art. Jelly a tout avant ton RDV — zéro bulle DM.</p></div></div>
+        <div class="step"><div class="num">03</div><div><h3>Pose l'acompte, c'est bloqué</h3><p>50% en ligne, créneau verrouillé et confirmé automatiquement. Tu reçois ton récap.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOOKBOOK ================= -->
+<section id="lookbook">
+  <div class="wrap">
+    <div class="kicker">My works</div>
+    <h2 class="h2">LOOKBOOK</h2>
+    <p class="lead" style="margin-bottom:34px">Touche une tuile pour y déposer tes vraies photos — le lookbook se branche direct sur ton feed.</p>
+    <div class="grid-look">
+      <div class="tile" style="background:linear-gradient(150deg,#E0338C,#3A1024)"><div class="ph">👑</div><b>SIGNATURE — 3D SCULPTÉ MAIN</b><small>charms · relief · pièce unique</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#FF9ECF,#D6247A)"><div class="ph">🌸</div><b>BLOOM</b><small>fleurs 3D</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#C2186F,#8E0F4F)"><div class="ph">🍒</div><b>CHERRY RED</b><small>rouge profond</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#3A1024,#E0338C)"><div class="ph">🌌</div><b>FRESQUE</b><small>paysage main levée</small></div>
+      <div class="tile" style="background:linear-gradient(135deg,#FFC3E1,#C2186F)"><div class="ph">🫧</div><b>JELLY BABY</b><small>gloss transparent</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TARIFS ================= -->
+<section class="tarifs" id="tarifs">
+  <div class="wrap">
+    <div class="kicker">Tarifs</div>
+    <h2 class="h2">CLAIRS, NETS, SANS SURPRISE</h2>
+    <p class="lead">Le prix que tu vois, c'est le prix que tu payes. Le nail art se devise sur ton moodboard, avant le RDV — jamais sur le fauteuil.</p>
+    <div class="tarif-cols">
+      <div class="tarif-card">
+        <h3>💅 EXTENSIONS</h3>
+        <div class="trow"><div><div class="n">Gel X</div><div class="d">pose complète capsules américaines</div></div><div class="p">65€</div></div>
+        <div class="trow"><div><div class="n">Dépose + pose</div><div class="d">on repart propre, on repose direct</div></div><div class="p">70€</div></div>
+        <div class="trow"><div><div class="n">Dépose seule</div><div class="d">dépose complète, sans repose</div></div><div class="p">20€</div></div>
+      </div>
+      <div class="tarif-card">
+        <h3>🤍 ONGLES NATURELS</h3>
+        <div class="trow"><div><div class="n">Renforcement</div><div class="d">gel sur ongle naturel</div></div><div class="p">55€</div></div>
+        <div class="trow"><div><div class="n">Remplissage</div><div class="d">entretien de ton renfort</div></div><div class="p">50€</div></div>
+        <div class="trow"><div><div class="n">Dépose + nouveau renfort</div><div class="d">on nettoie, on reconstruit</div></div><div class="p">60€</div></div>
+        <div class="trow"><div><div class="n">Dépose ongles naturels</div><div class="d">dépose douce, sans casse</div></div><div class="p">15€</div></div>
+      </div>
+      <div class="nailart-note">
+        <div>
+          <b>+ NAIL ART 🎨</b>
+          <p>French revisité, airbrush, 3D sculpté, charms, fresques… Envoie ton moodboard dans la résa : Jelly te devise ton nail art avant le RDV, en fonction du niveau de détail.</p>
+        </div>
+        <a class="btn btn-jelly" href="#reservation">Composer ma pose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RÉSERVATION ================= -->
+<section class="resa" id="reservation">
+  <div class="wrap">
+    <div class="kicker">Réservation</div>
+    <h2 class="h2">COMPOSE TA POSE</h2>
+    <p class="lead" style="color:rgba(255,255,255,.7)">Exactement ce que Jelly te demande en DM — mais en une fois, avec ton prix en live et ton créneau bloqué à la fin.</p>
+    <div class="resa-grid">
+      <div class="panel">
+
+        <div>
+          <div class="qnum">1 · TA PRESTATION</div>
+          <div class="opts" id="prestas"></div>
+        </div>
+
+        <div>
+          <div class="qnum">2 · TON NAIL ART</div>
+          <div class="opts">
+            <div class="opt na" data-na="0"><div class="l"><b>Sans nail art</b><small>couleur unie ou nude</small></div><div class="pr">+0€</div></div>
+            <div class="opt na" data-na="1"><div class="l"><b>Avec nail art</b><small>devisé sur ton moodboard, avant le RDV</small></div><div class="pr">sur devis</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="qnum">3 · TON CRÉNEAU</div>
+          <div class="days" id="days"></div>
+          <div class="slots" id="slots"></div>
+        </div>
+
+        <div>
+          <div class="qnum">4 · TES INFOS</div>
+          <div class="fields">
+            <div class="field"><label>Prénom</label><input id="f-prenom" type="text" placeholder="Ton prénom" autocomplete="given-name"></div>
+            <div class="field"><label>Nom</label><input id="f-nom" type="text" placeholder="Ton nom" autocomplete="family-name"></div>
+            <div class="field"><label>Âge</label><input id="f-age" type="number" min="10" max="99" placeholder="18+"></div>
+            <div class="field"><label>Ton Insta</label><input id="f-insta" type="text" placeholder="@toncompte"></div>
+          </div>
+          <div class="age-err" id="age-err">💔 Désolée — les mineurs ne sont pas acceptés, même accompagnés.</div>
+        </div>
+
+        <div>
+          <div class="qnum">5 · TES PHOTOS</div>
+          <div class="uploads">
+            <label class="up" id="up-ongles">
+              <input type="file" accept="image/*">
+              <span class="ico">🤳</span>
+              <b>Tes ongles actuels</b>
+              <small>pour préparer ta dépose / ta pose</small>
+              <span class="ok-badge">reçu ✓</span>
+            </label>
+            <label class="up" id="up-mood">
+              <input type="file" accept="image/*">
+              <span class="ico">🧸</span>
+              <b>Ton moodboard</b>
+              <small>le nail art que tu veux — Jelly te devise avant le RDV</small>
+              <span class="ok-badge">reçu ✓</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DEVIS -->
+      <div class="devis" id="devis">
+        <h3>TON RÉCAP 🧾</h3>
+        <div id="devis-body"><div class="empty">Choisis ta prestation pour voir ton devis</div></div>
+        <div class="dtotal"><b>TA POSE</b><span class="amt" id="total">—</span></div>
+        <div class="acompte-line"><span>Acompte pour bloquer (50%)</span><b id="acompte">—</b></div>
+        <button class="btn btn-jelly" id="pay-btn" disabled style="opacity:.5">Bloquer mon créneau + acompte</button>
+        <div class="pay-note">Paiement acompte : PayPal ou espèces au studio · maquette — démo Stripe/PayPal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RÈGLES ================= -->
+<section id="regles">
+  <div class="wrap">
+    <div class="kicker">À lire avant de réserver</div>
+    <h2 class="h2">LES RÈGLES DU MONDE DE JELLY</h2>
+    <div class="rules-grid">
+      <div class="rule"><div class="ico">💳</div><b>Acompte 50%</b><p>Ton créneau n'est bloqué qu'après l'acompte de 50% du prix de la prestation. Non remboursable en cas d'annulation hors délai.</p></div>
+      <div class="rule"><div class="ico">📲</div><b>Reconfirme la veille</b><p>Confirme ta présence la veille de ton RDV avant 22h — sinon le créneau peut être libéré.</p></div>
+      <div class="rule"><div class="ico">⏱️</div><b>Retards</b><p>Plus de 15 min de retard = +10€. Au-delà, le rendez-vous est annulé et l'acompte est conservé.</p></div>
+      <div class="rule"><div class="ico">🗓️</div><b>Annulation 48h</b><p>Tu peux annuler jusqu'à 48h avant le rendez-vous. Passé ce délai, l'acompte est conservé.</p></div>
+      <div class="rule"><div class="ico">💶</div><b>PayPal ou espèces</b><p>L'acompte se règle par PayPal, le reste sur place par PayPal ou en espèces.</p></div>
+      <div class="rule"><div class="ico">🙅‍♀️</div><b>Solo & 18+</b><p>Pas d'accompagnateurs. Les mineurs ne sont pas acceptés. Viens ongles nus — pas de dépose extérieure.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEASER PRESS ON ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="teaser">
+      <div>
+        <span class="soon">PROCHAINEMENT</span>
+        <h3>PRESS ON BOX 📦</h3>
+        <p>Tes press on sur mesure, sculptés par Jelly et envoyés chez toi. Choix du modèle, de la taille et du nail art — directement depuis cette page.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">Être prévenue ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="padding-top:20px">
+  <div class="wrap" style="max-width:760px">
+    <div class="kicker">FAQ</div>
+    <h2 class="h2">QUESTIONS</h2>
+    <div style="margin-top:30px">
+      <div class="faq-item open">
+        <button class="faq-q">Comment je réserve, sans DM ?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Tu composes ta pose dans la réservation : prestation, créneau, tes infos, ta photo d'ongles et ton moodboard. Tu poses l'acompte de 50% et ton créneau est bloqué automatiquement. Plus besoin d'envoyer nom / âge / date / photos en 6 messages.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">L'acompte est-il remboursable ?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Non. L'acompte de 50% bloque ton créneau et n'est pas remboursable. Tu peux annuler jusqu'à 48h avant le RDV ; au-delà, il est conservé.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Le nail art coûte combien ?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Ça dépend du niveau de détail (french simple ≠ 3D sculpté main). Envoie ton moodboard dans la résa : Jelly te devise ton nail art avant le RDV, pas de surprise sur le fauteuil.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Je peux venir accompagnée ?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Non — pas d'accompagnateurs, pas d'enfants. Et les mineurs ne sont pas acceptés, même accompagnés.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Je viens comment ?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Le studio est à Noisiel (77), à 2 minutes à pied du RER A. L'adresse exacte t'est communiquée après l'acompte, dans ton récap de réservation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVIS ================= -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="kicker">Elles ont testé</div>
+    <h2 class="h2">AVIS CLIENTES</h2>
+    <div class="avis-grid">
+      <div class="avis">
+        <div class="who"><div class="pp">L</div><div><b>Léa</b><small>Gel X · 3D butterfly</small></div></div>
+        <div class="stars">★★★★★</div>
+        <p>« Vraiment de l'or dans les mains. Mon moodboard était chargé, le résultat était ENCORE mieux. Et j'ai réservé en 2 minutes un dimanche soir. »</p>
+      </div>
+      <div class="avis">
+        <div class="who"><div class="pp">A</div><div><b>Assa</b><small>Press on · fresque</small></div></div>
+        <div class="stars">★★★★★</div>
+        <p>« Anti basic nails, c'est pas un slogan, c'est un fait. Personne n'a les mêmes ongles que moi. L'acompte en ligne, le créneau bloqué direct : zéro stress. »</p>
+      </div>
+      <div class="avis">
+        <div class="who"><div class="pp">M</div><div><b>Maëlys</b><small>Renforcement · jelly gloss</small></div></div>
+        <div class="stars">★★★★★</div>
+        <p>« Le devis nail art avant le RDV, ça change tout. Je savais exactement où j'allais. Et le studio est vraiment à 2 min du RER. »</p>
+      </div>
+    </div>
+    <div class="illu-note">Avis d'illustration — à remplacer par tes vrais retours clientes (ton highlight « avis » en est plein 💌)</div>
+  </div>
+</section>
+
+<!-- ================= LOCALISATION ================= -->
+<section class="loc">
+  <div class="wrap">
+    <div class="kicker">Le studio</div>
+    <h2 class="h2">NOISIEL (77)</h2>
+    <div class="rer"><span class="badge">A</span> RER A · à 2 min à pied</div>
+    <p>📍 L'adresse exacte t'est communiquée après l'acompte, dans ton récap de réservation.</p>
+    <a class="btn btn-jelly" href="#reservation">Réserver mon créneau</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <svg class="flogo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="#FF9ECF"/>
+    <path d="M24 15 Q26 12 29 13 L27 24 24 24 Z" fill="#fff" opacity=".6"/>
+  </svg>
+  <div class="fname">THE WORLD OF JELLY</div>
+  <div class="fsub">Press On Nails × Gel X · Nail art · Noisiel (77) · 2 min RER A</div>
+  <div class="fsoc">
+    <a href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">📸 @theworldof_jelly</a>
+    <a href="https://www.tiktok.com/@theworldofjelly" target="_blank" rel="noopener">🎵 TikTok</a>
+    <a href="mailto:theworldof.jelly93@gmail.com">💌 Écrire</a>
+  </div>
+  <div class="demo">Maquette de présentation — démo interactive · aucune donnée n'est envoyée</div>
+</footer>
+
+<!-- ================= STICKY BAR ================= -->
+<div class="sticky-bar">
+  <div class="sb-devis"><small>TA POSE</small><b id="sb-total">—</b></div>
+  <a class="btn btn-jelly" href="#reservation">Réserver en 2 min</a>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" id="modal-pay">
+    <div class="big">🍮</div>
+    <h3>On bloque ton créneau ?</h3>
+    <div class="mrecap" id="m-recap"></div>
+    <p class="mnote">En posant l'acompte tu acceptes les règles : 50% non remboursable, reconfirmation la veille avant 22h, annulation possible jusqu'à 48h, retard +15 min = +10€.</p>
+    <button class="btn btn-jelly" id="paypal-btn">Payer l'acompte — PayPal</button>
+    <button class="close-x" id="modal-close">← revenir à ma pose</button>
+  </div>
+  <div class="modal" id="modal-spin" style="display:none">
+    <div class="spin"></div>
+    <h3>Paiement en cours…</h3>
+    <p class="mnote">Démo — aucune donnée bancaire réelle n'est traitée.</p>
+  </div>
+  <div class="modal" id="modal-ok" style="display:none">
+    <div class="big">🎉</div>
+    <h3>Créneau bloqué !</h3>
+    <p class="ref" id="m-ref">RÉF #JELLY-0000</p>
+    <div class="mrecap" id="m-recap2"></div>
+    <p class="mnote">Confirmation automatique ✅ Tu reçois ton récap par mail avec l'adresse exacte du studio.<br><b>Pense à reconfirmer la veille avant 22h</b> — et viens ongles nus 🤍</p>
+    <button class="btn btn-jelly" id="ok-close">C'est noté 💅</button>
+  </div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const PRESTAS=[
+  {id:'gelx',n:'Gel X',d:'extensions · capsules américaines',p:65,cat:'Extensions'},
+  {id:'deppose',n:'Dépose + pose',d:'extensions · dépose puis nouvelle pose',p:70,cat:'Extensions'},
+  {id:'depseule',n:'Dépose seule',d:'extensions · sans repose',p:20,cat:'Extensions'},
+  {id:'renfort',n:'Renforcement',d:'ongles naturels · gel',p:55,cat:'Ongles naturels'},
+  {id:'rempl',n:'Remplissage',d:'ongles naturels · entretien',p:50,cat:'Ongles naturels'},
+  {id:'depnr',n:'Dépose + nouveau renfort',d:'ongles naturels',p:60,cat:'Ongles naturels'},
+  {id:'depnat',n:'Dépose ongles naturels',d:'dépose douce',p:15,cat:'Ongles naturels'},
+];
+const SLOTS=['10:00','13:30','16:30','19:30'];
+const state={presta:null,na:null,day:null,slot:null};
+
+/* ================= PRESTAS ================= */
+const pWrap=document.getElementById('prestas');
+PRESTAS.forEach(pr=>{
+  const el=document.createElement('div');
+  el.className='opt';
+  el.innerHTML=`<div class="l"><b>${pr.n}</b><small>${pr.d}</small></div><div class="pr">${pr.p}€</div>`;
+  el.onclick=()=>{state.presta=pr;document.querySelectorAll('#prestas .opt').forEach(o=>o.classList.remove('on'));el.classList.add('on');render()};
+  pWrap.appendChild(el);
+});
+
+/* ================= NAIL ART ================= */
+document.querySelectorAll('.na').forEach(el=>{
+  el.onclick=()=>{state.na=el.dataset.na==='1';document.querySelectorAll('.na').forEach(o=>o.classList.remove('on'));el.classList.add('on');render()};
+});
+
+/* ================= CRÉNEAUX ================= */
+const daysWrap=document.getElementById('days'),slotsWrap=document.getElementById('slots');
+const DAYS=['dim','lun','mar','mer','jeu','ven','sam'];
+const days=[];
+for(let i=1;i<=14;i++){
+  const d=new Date();d.setDate(d.getDate()+i);
+  days.push(d);
+}
+days.forEach((d,i)=>{
+  const el=document.createElement('div');
+  el.className='day';
+  el.innerHTML=`<div class="dw">${DAYS[d.getDay()]}</div><div class="dn">${d.getDate()}</div>`;
+  el.onclick=()=>{state.day=d;state.slot=null;document.querySelectorAll('.day').forEach(o=>o.classList.remove('on'));el.classList.add('on');renderSlots(d);render()};
+  daysWrap.appendChild(el);
+});
+function seeded(n){let x=Math.sin(n)*10000;return x-Math.floor(x)}
+function renderSlots(d){
+  slotsWrap.innerHTML='';
+  SLOTS.forEach((s,i)=>{
+    const taken=seeded(d.getDate()*7+i*13)<0.35;
+    const el=document.createElement('div');
+    el.className='slot'+(taken?' off':'');
+    el.textContent=taken?s+' · pris':s;
+    if(!taken)el.onclick=()=>{state.slot=s;document.querySelectorAll('.slot').forEach(o=>o.classList.remove('on'));el.classList.add('on');render()};
+    slotsWrap.appendChild(el);
+  });
+}
+
+/* ================= UPLOADS ================= */
+document.querySelectorAll('.up').forEach(up=>{
+  const input=up.querySelector('input');
+  input.onchange=()=>{
+    if(input.files&&input.files[0]){
+      const img=document.createElement('img');
+      img.src=URL.createObjectURL(input.files[0]);
+      up.querySelectorAll('img').forEach(i=>i.remove());
+      up.insertBefore(img,up.firstChild);
+      up.classList.add('done');
+    }
+  };
+});
+
+/* ================= AGE ================= */
+const ageInput=document.getElementById('f-age'),ageErr=document.getElementById('age-err');
+ageInput.oninput=()=>{
+  const v=parseInt(ageInput.value,10);
+  ageErr.style.display=(v&&v<18)?'block':'none';
+  render();
+};
+
+/* ================= DEVIS ================= */
+const fmtDay=d=>d?d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'}):null;
+function render(){
+  const body=document.getElementById('devis-body');
+  const total=document.getElementById('total'),sb=document.getElementById('sb-total'),ac=document.getElementById('acompte');
+  const btn=document.getElementById('pay-btn');
+  if(!state.presta){body.innerHTML='<div class="empty">Choisis ta prestation pour voir ton devis</div>';total.textContent='—';sb.textContent='—';ac.textContent='—';btn.disabled=true;btn.style.opacity=.5;return}
+  let h=`<div class="dline"><span>${state.presta.n} · ${state.presta.cat}</span><span>${state.presta.p}€</span></div>`;
+  if(state.na===true)h+=`<div class="dline"><span>Nail art (sur ton moodboard)</span><span>sur devis</span></div>`;
+  if(state.na===false)h+=`<div class="dline"><span>Sans nail art</span><span>+0€</span></div>`;
+  if(state.day&&state.slot)h+=`<div class="dline"><span>${fmtDay(state.day)} · ${state.slot}</span><span>📌</span></div>`;
+  h+=`<div class="dline muted"><span>Restant à régler au studio (PayPal / espèces)</span><span>${Math.ceil(state.presta.p/2)}€${state.na?' + nail art':''}</span></div>`;
+  body.innerHTML=h;
+  total.textContent=state.presta.p+'€'+(state.na?' +':'');
+  sb.textContent=state.presta.p+'€'+(state.na?' +':'');
+  ac.textContent=Math.floor(state.presta.p/2)+'€';
+  const age=parseInt(ageInput.value,10);
+  const ready=state.presta&&state.na!==null&&state.day&&state.slot&&document.getElementById('f-prenom').value.trim()&&age>=18;
+  btn.disabled=!ready;btn.style.opacity=ready?1:.5;
+}
+document.querySelectorAll('#f-prenom,#f-nom,#f-insta').forEach?0:0;
+['f-prenom','f-nom','f-insta'].forEach(id=>document.getElementById(id).oninput=render);
+
+/* ================= MODAL ================= */
+const bg=document.getElementById('modal-bg');
+const mPay=document.getElementById('modal-pay'),mSpin=document.getElementById('modal-spin'),mOk=document.getElementById('modal-ok');
+function recapHTML(){
+  const p=state.presta;
+  return `
+  <div class="dline"><span>${document.getElementById('f-prenom').value} ${document.getElementById('f-nom').value}</span><span>${document.getElementById('f-insta').value||''}</span></div>
+  <div class="dline"><span>${p.n}</span><span>${p.p}€</span></div>
+  ${state.na?'<div class="dline"><span>Nail art</span><span>sur devis</span></div>':''}
+  <div class="dline"><span>${fmtDay(state.day)}</span><span>${state.slot}</span></div>
+  <div class="dline"><span><b>Acompte maintenant</b></span><span><b>${Math.floor(p.p/2)}€</b></span></div>`;
+}
+document.getElementById('pay-btn').onclick=()=>{
+  document.getElementById('m-recap').innerHTML=recapHTML();
+  mPay.style.display='block';mSpin.style.display='none';mOk.style.display='none';
+  bg.classList.add('show');
+};
+document.getElementById('modal-close').onclick=()=>bg.classList.remove('show');
+document.getElementById('paypal-btn').onclick=()=>{
+  mPay.style.display='none';mSpin.style.display='block';
+  setTimeout(()=>{
+    mSpin.style.display='none';
+    document.getElementById('m-ref').textContent='RÉF #JELLY-'+String(Math.floor(1000+Math.random()*9000));
+    document.getElementById('m-recap2').innerHTML=recapHTML();
+    mOk.style.display='block';
+  },1600);
+};
+document.getElementById('ok-close').onclick=()=>bg.classList.remove('show');
+bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
+
+/* ================= FAQ ================= */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.onclick=()=>q.parentElement.classList.toggle('open');
+});
+</script>
+</body>
+</html>
