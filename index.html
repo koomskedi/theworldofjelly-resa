@@ -45,7 +45,7 @@ section{padding:110px 0;position:relative}
 .display{font-family:'Baloo 2';font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
 h1.display{font-size:clamp(46px,8.2vw,110px)}
 h2.display{font-size:clamp(38px,6.4vw,84px);margin-bottom:20px}
-.display .hollow{color:transparent;-webkit-text-stroke:2.5px currentColor}
+.display .hollow{color:transparent;-webkit-text-stroke:2.5px var(--ink)}
 .display em{font-family:'Fraunces';font-style:italic;font-weight:500;text-transform:none;letter-spacing:0}
 .serif{font-family:'Fraunces',serif}
 .kicker{font-family:'Baloo 2';font-size:12px;letter-spacing:.3em;font-weight:800;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;margin-bottom:18px;background:var(--ink);color:var(--blush);padding:8px 18px;border-radius:999px;transform:rotate(-1.5deg)}
@@ -188,6 +188,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,246,2
   var(--plum);color:#fff;border-top:3px solid var(--ink)}
 .resa .kicker{background:var(--jelly);color:#fff}
 .resa h2.display{color:#fff}
+.resa h2.display .hollow{-webkit-text-stroke-color:#FF8FC6}
 .resa .lead{color:rgba(255,214,232,.7)}
 .resa-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:32px;margin-top:54px;align-items:start}
 .resa-grid>*{min-width:0}
@@ -314,6 +315,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,246,2
 .studio::before{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;background:var(--grad);opacity:.25;border-radius:38% 62% 55% 45%/48% 40% 60% 52%;filter:blur(30px)}
 .studio-grid{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center;position:relative}
 .studio h2.display{color:#fff}
+.studio h2.display .hollow{-webkit-text-stroke-color:#FF8FC6}
 .studio .kicker{background:var(--jelly);color:#fff}
 .studio p{color:rgba(255,214,232,.65);font-weight:400;max-width:480px;font-size:15px}
 .rer{display:inline-flex;align-items:center;gap:10px;background:#E2231A;color:#fff;font-weight:700;padding:9px 20px;border-radius:999px;font-size:14px;margin:20px 0 24px;border:3px solid #fff}
@@ -968,7 +970,7 @@ document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.cl
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   const scene=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(35,1,.1,50);
-  cam.position.set(0,1.15,4.8);cam.lookAt(0,.55,0);
+  cam.position.set(0,1.5,7.2);cam.lookAt(0,.5,0);
 
   /* profil du flan jelly (comme son wordmark) */
   const pts=[];
@@ -987,23 +989,16 @@ document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.cl
   const basePos=geo.attributes.position.array.slice();
 
   const mat=new THREE.MeshPhongMaterial({
-    color:0xE0338C,specular:0xffffff,shininess:80,
-    emissive:0x8E0F4F,emissiveIntensity:.18,
+    color:0xE0338C,specular:0xffffff,shininess:60,
+    emissive:0x8E0F4F,emissiveIntensity:.12,
     transparent:true,opacity:.97
   });
   const jelly=new THREE.Mesh(geo,mat);
   jelly.position.y=-.15;
   scene.add(jelly);
 
-  /* reflet gloss : petite calotte blanche semi-transparente */
-  const glossGeo=new THREE.SphereGeometry(.34,24,16,0,Math.PI*2,0,Math.PI/2.6);
-  const gloss=new THREE.Mesh(glossGeo,new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.35}));
-  gloss.position.set(-.32,.78,.5);
-  gloss.rotation.z=.5;gloss.rotation.x=-.25;
-  jelly.add(gloss);
-
-  scene.add(new THREE.AmbientLight(0xFFD9EC,.75));
-  const key=new THREE.DirectionalLight(0xffffff,.95);key.position.set(2.4,3.2,3.6);scene.add(key);
+  scene.add(new THREE.AmbientLight(0xFFD9EC,.6));
+  const key=new THREE.DirectionalLight(0xffffff,.85);key.position.set(2.4,3.2,3.6);scene.add(key);
   const rim=new THREE.PointLight(0xFF6EB4,.9,12);rim.position.set(-2.6,1.4,-1.8);scene.add(rim);
   const fill=new THREE.PointLight(0xffffff,.35,10);fill.position.set(1.6,.4,2.6);scene.add(fill);
 
