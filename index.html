@@ -38,6 +38,7 @@
   --vio:#B24BF3;
   --blu:#5B7BFF;
   --mint:#6FE7B8;
+  --neon:#A8FF3E; /* lime fluo — ses sets pistache/lime, claque sur le plum */
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -471,6 +472,49 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 .up .ok-badge{background:var(--mint);color:var(--ink)}
 .hist-visual .toile{box-shadow:0 30px 70px -20px rgba(224,51,140,.5),0 0 34px rgba(178,75,243,.28)}
 @media(prefers-reduced-motion:reduce){.jam-fab{animation:none}}
+
+/* ---------- V5.4 — AUDACE NÉON (anti basic site) ----------
+   Principe : les néons vivent dans le sombre. Fluo assumé sur plum/encre,
+   touches maîtrisées sur fonds clairs. Harmonie = toujours SA palette. */
+/* kickers fluo sur sections sombres */
+.histoire .kicker{background:var(--neon);color:var(--ink);box-shadow:0 0 24px rgba(168,255,62,.5)}
+.resa .kicker{background:var(--vio);color:#fff;box-shadow:0 0 24px rgba(178,75,243,.55)}
+.cine-inner .kicker{background:var(--gold);color:var(--ink);box-shadow:0 0 24px rgba(255,179,71,.6)}
+/* histoire : chapitres tricolores (rose → lime → or) */
+.chapitre:nth-of-type(2) .chap-num{-webkit-text-stroke-color:var(--neon);text-shadow:0 0 26px rgba(168,255,62,.5)}
+.chapitre:nth-of-type(3) .chap-num{-webkit-text-stroke-color:var(--gold);text-shadow:0 0 26px rgba(255,179,71,.5)}
+.chapitre:nth-of-type(2) blockquote{border-left-color:var(--neon)}
+.chapitre:nth-of-type(2) blockquote mark{background:linear-gradient(transparent 60%,rgba(168,255,62,.38) 60%)}
+.chapitre:nth-of-type(3) blockquote{border-left-color:var(--gold)}
+.chapitre:nth-of-type(3) blockquote mark{background:linear-gradient(transparent 60%,rgba(255,179,71,.42) 60%)}
+/* tarifs : « sans surprise » en néon violet + badge naturels violet */
+.tarifs h2.display .hollow{-webkit-text-stroke-color:var(--vio);text-shadow:0 0 22px rgba(178,75,243,.4)}
+.tarif-col:nth-child(2) h3{background:var(--vio)}
+/* cinéma : « L'art en mouvement » en dégradé multicolore néon */
+.cine-inner h2{background:linear-gradient(92deg,#FF6EB4 5%,var(--gold) 38%,var(--neon) 68%,var(--blu) 98%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cine-inner h2 .hollow{-webkit-text-stroke-color:#fff;text-shadow:0 0 24px rgba(255,255,255,.45)}
+/* résa : numéros d'étapes multicolores */
+.card:nth-of-type(2) .qnum{color:var(--neon)}
+.card:nth-of-type(3) .qnum{color:var(--gold)}
+.card:nth-of-type(4) .qnum{color:var(--vio)}
+.card:nth-of-type(5) .qnum{color:var(--mint)}
+.qnum::after{background:currentColor;opacity:.3}
+/* règles : arc-en-ciel complet des numéros */
+.rule:nth-child(3) .num{background:var(--neon);color:var(--ink)}
+.rule:nth-child(5) .num{background:var(--mint);color:var(--ink)}
+/* marquee : mots fluo alternés sur l'encre */
+.marquee-inner span:nth-of-type(4n+3){color:var(--neon);text-shadow:0 0 12px rgba(168,255,62,.55)}
+.marquee-inner span:nth-of-type(8n+1){color:var(--gold);text-shadow:0 0 12px rgba(255,179,71,.5)}
+/* hero : stats tricolores + sticker glow */
+.hero-stats>div:nth-child(2) b{color:var(--vio)}
+.hero-stats>div:nth-child(3) b{color:#E8890C}
+.hero .sticker{box-shadow:var(--bs-sm),0 0 20px rgba(224,51,140,.35)}
+/* boutons : glow permanent discret, fort au survol */
+.btn-solid{box-shadow:5px 5px 0 var(--ink),0 0 16px rgba(224,51,140,.3)}
+.btn-dark:hover{box-shadow:7px 7px 0 var(--ink),0 0 22px rgba(168,255,62,.4)}
+/* galerie : titre glow doux + JAM chips violets */
+.galerie h2.display .hollow{text-shadow:0 0 18px rgba(224,51,140,.25)}
+.jam-chip:hover{background:var(--vio);color:#fff}
 
 /* ---------- MOBILE global (page plus courte) ---------- */
 @media(max-width:900px){
