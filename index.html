@@ -985,11 +985,11 @@ document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.cl
   pts.push(new THREE.Vector2(.3,1.24));
   pts.push(new THREE.Vector2(0,1.28));
   const geo=new THREE.LatheGeometry(pts,72);
-  geo.computeVertexNormals();
+  geo.scale(.88,.88,.88);
   const basePos=geo.attributes.position.array.slice();
 
   const mat=new THREE.MeshPhongMaterial({
-    color:0xE0338C,specular:0xffffff,shininess:60,
+    color:0xE0338C,specular:0x775566,shininess:28,
     emissive:0x8E0F4F,emissiveIntensity:.12,
     transparent:true,opacity:.97
   });
@@ -1038,7 +1038,6 @@ document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.cl
         pos.array[i*3+1]=oy;
       }
       pos.needsUpdate=true;
-      geo.computeVertexNormals();
     }
     /* ressort du rebond */
     vy+=(1-sy)*.14;vy*=.86;sy+=vy;
