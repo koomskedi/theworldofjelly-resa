@@ -11,10 +11,11 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M14 46 Q12 50 17 50 L47 50 Q52 50 50 46 L44 20 Q42 12 32 12 Q22 12 20 20 Z' fill='%23E0338C'/%3E%3C/svg%3E">
 <style>
 /* ============================================================
-   V4 — DESIGN SYSTEM "JELLY CHUNKY"
-   Réfs : bragg.com (typo massive, sections pleines couleurs)
-   + bahamabucks.com (hero produit joueur)
-   FRAMER : chaque section porte un commentaire de portabilité.
+   V5 — "JELLY CHUNKY × FINE LINE"
+   Réfs : bragg.com (drips pleine couleur, typo massive) · Moon Studio
+   (chatbot flottant, social float, carousel avis) · influences lao
+   subtiles (dok champa ✿, bande losanges textile).
+   FRAMER : commentaires de portabilité par section.
    ============================================================ */
 :root{
   --jelly:#E0338C;
@@ -39,38 +40,45 @@ body{font-family:'Outfit',sans-serif;background:var(--creme);color:var(--ink);fo
 ::selection{background:var(--jelly);color:#fff}
 img{display:block;max-width:100%}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-section{padding:110px 0;position:relative}
+section{padding:100px 0;position:relative}
 
-/* ---------- typo système ---------- */
+/* ---------- typo ---------- */
 .display{font-family:'Baloo 2';font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
-h1.display{font-size:clamp(46px,8.2vw,110px)}
-h2.display{font-size:clamp(38px,6.4vw,84px);margin-bottom:20px}
+h1.display{font-size:clamp(44px,7.8vw,104px)}
+h2.display{font-size:clamp(36px,6vw,80px);margin-bottom:20px}
 .display .hollow{color:transparent;-webkit-text-stroke:2.5px var(--ink)}
-.display em{font-family:'Fraunces';font-style:italic;font-weight:500;text-transform:none;letter-spacing:0}
 .serif{font-family:'Fraunces',serif}
 .kicker{font-family:'Baloo 2';font-size:12px;letter-spacing:.3em;font-weight:800;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;margin-bottom:18px;background:var(--ink);color:var(--blush);padding:8px 18px;border-radius:999px;transform:rotate(-1.5deg)}
 .lead{font-size:16.5px;max-width:600px;font-weight:400}
 
-/* ---------- curseur custom (desktop uniquement) ---------- */
-/* FRAMER : override/appearance → composant code "JellyCursor" (Workshop) */
+/* ---------- séparateur "jelly qui coule" (à la Bragg) ---------- */
+/* FRAMER : SVG exporté, posé en bas de chaque frame pleine couleur */
+.drip{display:block;width:100%;height:60px;margin-bottom:-1px;position:relative;z-index:3}
+@media(max-width:560px){.drip{height:36px}}
+
+/* ---------- bande textile lao (losanges fins — subtil) ---------- */
+.lao-band{height:7px;width:120px;border-radius:4px;opacity:.55;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14' width='28' height='14'%3E%3Cpath d='M7 1 13 7 7 13 1 7Z M21 1 27 7 21 13 15 7Z' fill='none' stroke='%23E0338C' stroke-width='1.6'/%3E%3C/svg%3E");background-size:28px 14px;background-repeat:repeat-x;background-position:center;margin:14px 0 0}
+.lao-band.light{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14' width='28' height='14'%3E%3Cpath d='M7 1 13 7 7 13 1 7Z M21 1 27 7 21 13 15 7Z' fill='none' stroke='%23FF8FC6' stroke-width='1.6'/%3E%3C/svg%3E")}
+
+/* ---------- fleur dok champa (inline svg .champa) ---------- */
+.champa{width:1em;height:1em;display:inline-block;vertical-align:-.12em}
+
+/* ---------- curseur custom ---------- */
+/* FRAMER : composant code Workshop "JellyCursor" */
 #cur,#cur2{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;display:none}
 #cur{width:10px;height:10px;background:var(--jelly);transform:translate(-50%,-50%)}
 #cur2{width:38px;height:38px;border:2px solid var(--jelly);transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s}
 #cur2.grow{width:64px;height:64px;opacity:.55}
-@media(hover:hover) and (pointer:fine){
-  #cur,#cur2{display:block}
-}
+@media(hover:hover) and (pointer:fine){#cur,#cur2{display:block}}
 
 /* ---------- reveals ---------- */
 .rv{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 
-/* ---------- stickers ---------- */
+/* ---------- stickers / boutons ---------- */
 .sticker{display:inline-block;background:var(--ink);color:var(--blush);font-family:'Baloo 2';font-weight:800;font-size:13px;letter-spacing:.18em;padding:9px 20px;border-radius:999px;transform:rotate(-2deg);box-shadow:var(--bs-sm)}
 .sticker.spin{animation:stickerSpin 7s ease-in-out infinite}
 @keyframes stickerSpin{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(3deg)}}
-
-/* ---------- boutons chunky ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:3px solid var(--ink);cursor:pointer;text-decoration:none;font-family:'Baloo 2';font-weight:700;font-size:15px;letter-spacing:.04em;padding:15px 30px;border-radius:999px;transition:var(--tr);position:relative;background:#fff;color:var(--ink);box-shadow:var(--bs-sm)}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
 .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
@@ -78,119 +86,140 @@ h2.display{font-size:clamp(38px,6.4vw,84px);margin-bottom:20px}
 .btn-dark{background:var(--ink);color:var(--blush)}
 .btn-white{background:#fff;color:var(--magenta)}
 
-/* ---------- header ---------- */
-/* FRAMER : header natif Framer + composant sticky */
-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,246,250,.88);backdrop-filter:blur(14px);border-bottom:3px solid var(--ink)}
-.nav{max-width:1180px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand svg{width:30px;height:30px;animation:wobble 6s ease-in-out infinite}
+/* ---------- HEADER — menu jelly ---------- */
+/* FRAMER : nav natif + overlay variant mobile */
+header{position:fixed;top:14px;left:0;right:0;z-index:100;pointer-events:none}
+.nav{max-width:1180px;margin:0 auto;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;background:rgba(255,246,250,.92);backdrop-filter:blur(12px);border:3px solid var(--ink);border-radius:999px;padding:8px 18px 8px 12px;box-shadow:var(--bs-sm)}
+.brand svg{width:26px;height:26px;animation:wobble 6s ease-in-out infinite}
 @keyframes wobble{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
-.brand span{font-family:'Baloo 2';font-weight:800;font-size:16px;color:var(--ink);letter-spacing:.05em}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;transition:var(--tr)}
-.nav-links a:hover{color:var(--jelly)}
-.nav .btn{padding:9px 20px;font-size:13.5px;box-shadow:3px 3px 0 var(--ink)}
-@media(max-width:820px){.nav-links a:not(.btn){display:none}}
+.brand span{font-family:'Baloo 2';font-weight:800;font-size:15px;color:var(--ink);letter-spacing:.05em}
+.pillnav{display:flex;align-items:center;gap:4px;background:rgba(255,246,250,.92);backdrop-filter:blur(12px);border:3px solid var(--ink);border-radius:999px;padding:5px;box-shadow:var(--bs-sm)}
+.pillnav a{text-decoration:none;color:var(--ink);font-family:'Baloo 2';font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;transition:var(--tr)}
+.pillnav a:hover{background:var(--blush)}
+.pillnav a.cta{background:var(--jelly);color:#fff;border:2.5px solid var(--ink)}
+.pillnav a.cta:hover{background:var(--magenta)}
+.burger{display:none;width:52px;height:52px;border-radius:50%;background:var(--jelly);border:3px solid var(--ink);box-shadow:var(--bs-sm);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{display:block;width:20px;height:3px;border-radius:3px;background:#fff;transition:var(--tr)}
+@media(max-width:860px){.pillnav{display:none}.burger{display:flex}.brand span{font-size:13px}}
+/* menu mobile overlay */
+.mobmenu{position:fixed;inset:0;z-index:200;background:linear-gradient(160deg,#FF6EB4,#E0338C 55%,#C2186F);display:flex;flex-direction:column;justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobmenu.open{opacity:1;pointer-events:auto}
+.mobmenu a.mlink{font-family:'Baloo 2';font-weight:800;font-size:clamp(34px,9vw,52px);text-transform:uppercase;color:#fff;text-decoration:none;line-height:1.25;display:flex;align-items:center;gap:14px}
+.mobmenu a.mlink .champa{color:var(--plum);opacity:.7;font-size:.5em}
+.mobmenu .msoc{display:flex;gap:14px;margin-top:38px}
+.mobmenu .msoc a{width:52px;height:52px;border-radius:50%;background:#fff;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.mobmenu .close-m{position:absolute;top:22px;right:22px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:3px solid #fff;font-size:22px;cursor:pointer;font-family:'Outfit'}
 
 /* ---------- HERO 3D ---------- */
-/* FRAMER : la brique 3D = scène Spline (jelly wobble + follow cursor + bounce)
-   intégrée en embed Spline natif Framer. Le texte reste du Framer natif. */
+/* FRAMER : texte natif + brique 3D = embed Spline (wobble/follow/bounce) */
 .hero{padding:0;min-height:100svh;display:flex;align-items:center;background:
   radial-gradient(1100px 600px at 85% 0%,var(--blush-2),transparent 60%),
   radial-gradient(800px 520px at -5% 100%,#FFE9F4,transparent 55%),
-  var(--blush);overflow:clip;border-bottom:3px solid var(--ink)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;width:100%;padding:130px 0 70px}
+  var(--blush);overflow:clip}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;width:100%;padding:120px 0 40px}
 .hero h1{margin:18px 0 22px;color:var(--ink)}
 .hero h1 .row2{color:var(--jelly)}
-.hero p.sub{font-size:17px;max-width:470px;margin-bottom:32px;font-weight:500}
-.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px}
+.hero p.sub{font-size:17px;max-width:470px;margin-bottom:30px;font-weight:500}
+.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px}
 .hero-stats{display:flex;gap:12px;flex-wrap:wrap}
 .hero-stats>div{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:10px 20px;box-shadow:var(--bs-sm)}
 .hero-stats b{font-family:'Baloo 2';font-weight:800;font-size:20px;display:block;color:var(--magenta);line-height:1.1}
 .hero-stats small{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
-.jelly-stage{position:relative;min-height:520px;height:100%}
+.jelly-stage{position:relative;min-height:500px;height:100%}
 #jelly-canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:manipulation}
 .jelly-shadow{position:absolute;left:50%;bottom:12%;width:46%;height:36px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(58,16,36,.30),transparent 65%);border-radius:50%;pointer-events:none}
 .jelly-hint{position:absolute;bottom:4%;left:50%;transform:translateX(-50%) rotate(-2deg);background:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 18px;font-family:'Baloo 2';font-weight:700;font-size:12.5px;letter-spacing:.1em;box-shadow:var(--bs-sm);white-space:nowrap}
-.hero-fallback{display:none;position:absolute;inset:8%;border-radius:40% 60% 55% 45%/50% 45% 55% 50%;overflow:hidden;border:4px solid var(--ink);box-shadow:var(--bs)}
+.hero-fallback{display:none;position:absolute;inset:6% 8%;border-radius:42% 58% 55% 45%/50% 45% 55% 50%;overflow:hidden;border:4px solid var(--ink);box-shadow:var(--bs)}
 .hero-fallback img{width:100%;height:100%;object-fit:cover}
+.jelly-stage.no3d #jelly-canvas,.jelly-stage.no3d .jelly-hint,.jelly-stage.no3d .jelly-shadow{display:none}
+.jelly-stage.no3d .hero-fallback{display:block}
 
 /* ---------- marquee ---------- */
-/* FRAMER : composant Ticker/Marquee natif Framer */
-.marquee{background:var(--ink);padding:16px 0;overflow:clip;transform:rotate(-1deg) scale(1.02);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);position:relative;z-index:2}
-.marquee-inner{display:flex;white-space:nowrap;animation:scroll 30s linear infinite;font-family:'Baloo 2';font-weight:800;font-size:16px;letter-spacing:.2em;color:var(--blush);text-transform:uppercase}
-.marquee-inner span{padding:0 24px}
-.marquee-inner .star{color:var(--jelly)}
+/* FRAMER : Ticker natif */
+.marquee{background:var(--ink);padding:15px 0;overflow:clip;position:relative;z-index:2}
+.marquee-inner{display:flex;white-space:nowrap;animation:scroll 30s linear infinite;font-family:'Baloo 2';font-weight:800;font-size:15.5px;letter-spacing:.2em;color:var(--blush);text-transform:uppercase;align-items:center}
+.marquee-inner span{padding:0 22px;display:inline-flex;align-items:center}
+.marquee-inner .champa{color:var(--jelly);font-size:15px}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- galerie ---------- */
-/* FRAMER : grid Framer natif + tags = composants texte rotés */
-.galerie{background:var(--creme)}
-.gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:52px}
+/* FRAMER : grid natif */
+.galerie{background:var(--creme);padding-top:90px}
+.gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
 .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .gw{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--blush);aspect-ratio:1/1;border:3px solid var(--ink);box-shadow:var(--bs-sm);transition:var(--tr)}
-.gw:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
+.gw:hover{transform:translate(-3px,-3px) rotate(-.5deg);box-shadow:8px 8px 0 var(--ink)}
 .gw img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
 .gw:hover img{transform:scale(1.06)}
 .gw .tag{position:absolute;left:12px;bottom:12px;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:7px 15px;font-family:'Baloo 2';font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);transform:rotate(-2deg)}
 .gw:nth-child(even) .tag{transform:rotate(1.5deg);background:var(--ink);color:var(--blush)}
 .gw.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
-.quote-band{margin-top:64px;background:#fff;border:3px solid var(--ink);border-radius:var(--radius);padding:clamp(26px,4vw,46px);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;box-shadow:var(--bs)}
+.gw .ig-mini{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;color:var(--ink);opacity:0;transition:opacity .25s}
+.gw:hover .ig-mini{opacity:1}
+.quote-band{margin-top:60px;background:#fff;border:3px solid var(--ink);border-radius:var(--radius);padding:clamp(26px,4vw,44px);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;box-shadow:var(--bs)}
 .quote-band blockquote{font-family:'Fraunces';font-style:italic;font-size:clamp(19px,2.7vw,27px);font-weight:500;max-width:720px;letter-spacing:-.01em}
 .quote-band mark{background:linear-gradient(transparent 55%,var(--blush) 55%);color:inherit;padding:0 2px}
 .quote-band cite{display:block;margin-top:12px;font-family:'Outfit';font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
-@media(max-width:820px){.gal-grid{grid-template-columns:repeat(2,1fr)}.quote-band{grid-template-columns:1fr}}
+@media(max-width:820px){
+  .gal-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .gw.big{grid-column:span 2;grid-row:span 1;aspect-ratio:16/10}
+  .gw.mob-hide{display:none}
+  .quote-band{grid-template-columns:1fr}
+}
 
-/* ---------- HISTOIRE — Mon univers d'art mobile ---------- */
-/* FRAMER : section native (texte + scroll variants Framer) ; vidéo = composant
-   vidéo Framer sticky. Aucune brique code nécessaire. */
+/* ---------- HISTOIRE (sans vidéo) ---------- */
+/* FRAMER : natif (scroll variants) — visuel = frame image + stickers */
 .histoire{background:
   radial-gradient(900px 500px at 110% 10%,rgba(224,51,140,.20),transparent 55%),
   radial-gradient(700px 460px at -10% 90%,rgba(224,51,140,.14),transparent 55%),
-  var(--plum);color:#FFE3EF;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+  var(--plum);color:#FFE3EF;padding-bottom:120px}
 .histoire .kicker{background:var(--jelly);color:#fff}
 .histoire h2.display{color:#fff}
 .histoire h2.display .hollow{-webkit-text-stroke-color:var(--jelly)}
 .histoire .lead{color:rgba(255,214,232,.75)}
-.hist-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(32px,5vw,72px);margin-top:64px;align-items:start}
-.chapitre{padding:38px 0;border-top:2px dashed rgba(255,143,198,.3);position:relative}
+.hist-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(32px,5vw,72px);margin-top:56px;align-items:start}
+.chapitre{padding:32px 0;border-top:2px dashed rgba(255,143,198,.3)}
 .chapitre:first-child{border-top:none;padding-top:0}
-.chap-num{font-family:'Baloo 2';font-weight:800;font-size:clamp(52px,6vw,76px);line-height:1;color:transparent;-webkit-text-stroke:2.5px var(--jelly);margin-bottom:14px}
-.chapitre h3{font-family:'Baloo 2';font-weight:800;font-size:clamp(21px,2.6vw,28px);text-transform:uppercase;letter-spacing:.02em;color:#fff;margin-bottom:14px}
-.chapitre p{font-size:15.5px;color:rgba(255,214,232,.8);max-width:520px;margin-bottom:14px}
-.chapitre blockquote{font-family:'Fraunces';font-style:italic;font-size:clamp(17px,2.2vw,21px);font-weight:500;color:#fff;line-height:1.5;border-left:4px solid var(--jelly);padding-left:18px;margin:18px 0 0}
+.chap-num{font-family:'Baloo 2';font-weight:800;font-size:clamp(48px,5.6vw,70px);line-height:1;color:transparent;-webkit-text-stroke:2.5px var(--jelly);margin-bottom:12px}
+.chapitre h3{font-family:'Baloo 2';font-weight:800;font-size:clamp(20px,2.5vw,27px);text-transform:uppercase;letter-spacing:.02em;color:#fff;margin-bottom:12px}
+.chapitre p{font-size:15px;color:rgba(255,214,232,.8);max-width:520px;margin-bottom:12px}
+.chapitre blockquote{font-family:'Fraunces';font-style:italic;font-size:clamp(16.5px,2.1vw,20px);font-weight:500;color:#fff;line-height:1.5;border-left:4px solid var(--jelly);padding-left:18px;margin:16px 0 0}
 .chapitre blockquote mark{background:linear-gradient(transparent 60%,rgba(224,51,140,.55) 60%);color:inherit;padding:0 2px}
-.hist-video{position:sticky;top:92px}
-.hist-video video{width:100%;border-radius:var(--radius);border:3px solid var(--jelly);box-shadow:0 30px 70px -20px rgba(224,51,140,.5);aspect-ratio:9/16;object-fit:cover;background:var(--plum-2)}
-.hist-video .vcap{margin-top:14px;text-align:center;font-family:'Baloo 2';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,214,232,.65)}
-@media(max-width:900px){.hist-grid{grid-template-columns:1fr}.hist-video{position:static;max-width:340px;margin:0 auto}}
+.hist-visual{position:sticky;top:100px;text-align:center}
+.hist-visual .toile{position:relative;border:4px solid var(--jelly);border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 70px -20px rgba(224,51,140,.5);transform:rotate(1.5deg)}
+.hist-visual .toile img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.hist-visual .toile .tag-toile{position:absolute;left:14px;bottom:14px;background:var(--ink);color:var(--blush);border:2.5px solid var(--jelly);border-radius:999px;padding:8px 16px;font-family:'Baloo 2';font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;transform:rotate(-2deg)}
+.hist-visual .portrait-badge{position:absolute;top:-22px;right:-18px;width:88px;height:88px;border-radius:50%;border:4px solid var(--jelly);overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.4);transform:rotate(4deg);z-index:2}
+.hist-visual .portrait-badge img{width:100%;height:100%;object-fit:cover}
+.hist-visual .vcap{margin-top:18px;font-family:'Baloo 2';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,214,232,.65);display:flex;align-items:center;justify-content:center;gap:8px}
+@media(max-width:900px){.hist-grid{grid-template-columns:1fr}.hist-visual{position:static;max-width:320px;margin:10px auto 0}}
 
 /* ---------- tarifs ---------- */
-/* FRAMER : natif (stacks + textes). Bande nail art = frame pleine couleur. */
-.tarifs{background:#fff}
-.tarif-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);margin-top:54px}
+.tarifs{background:#fff;padding-top:90px}
+.tarif-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);margin-top:50px}
 .tarif-col h3{font-family:'Baloo 2';font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:#fff;background:var(--jelly);border:3px solid var(--ink);display:inline-flex;padding:8px 18px;border-radius:999px;margin-bottom:12px;box-shadow:var(--bs-sm);transform:rotate(-1deg)}
-.trow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:19px 0;border-bottom:2.5px dashed var(--blush-2)}
+.trow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:2.5px dashed var(--blush-2)}
 .trow .n{font-weight:700;font-size:16px}
 .trow .d{font-size:12.5px;color:var(--deep);font-weight:400;margin-top:2px;opacity:.75}
 .trow .p{font-family:'Baloo 2';font-weight:800;font-size:21px;white-space:nowrap;color:var(--magenta)}
-.na-band{margin-top:60px;background:var(--jelly);border:3px solid var(--ink);border-radius:var(--radius);padding:clamp(26px,4vw,42px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;color:#fff;box-shadow:var(--bs)}
+.na-band{margin-top:56px;background:var(--jelly);border:3px solid var(--ink);border-radius:var(--radius);padding:clamp(26px,4vw,42px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;color:#fff;box-shadow:var(--bs)}
 .na-band h4{font-family:'Baloo 2';font-weight:800;font-size:24px;text-transform:uppercase;margin-bottom:6px}
 .na-band p{font-size:14.5px;opacity:.95;max-width:560px;font-weight:500}
-@media(max-width:820px){.tarif-cols{grid-template-columns:1fr;gap:34px}}
+@media(max-width:820px){.tarif-cols{grid-template-columns:1fr;gap:30px}}
 
-/* ---------- réservation (parcours v3 conservé, habillage v4) ---------- */
-/* FRAMER : LA brique code → composant code Workshop "JellyResa"
-   (React : state prestas/créneaux/devis/modal — logique JS ci-dessous portée telle quelle) */
+/* ---------- réservation (parcours v3 conservé) ---------- */
+/* FRAMER : brique code Workshop "JellyResa" — logique JS portée telle quelle */
 .resa{background:
   radial-gradient(800px 460px at 110% 0%,rgba(224,51,140,.18),transparent 55%),
   radial-gradient(600px 400px at -10% 100%,rgba(224,51,140,.13),transparent 55%),
-  var(--plum);color:#fff;border-top:3px solid var(--ink)}
+  var(--plum);color:#fff;padding-bottom:120px}
 .resa .kicker{background:var(--jelly);color:#fff}
 .resa h2.display{color:#fff}
 .resa h2.display .hollow{-webkit-text-stroke-color:#FF8FC6}
 .resa .lead{color:rgba(255,214,232,.7)}
-.resa-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:32px;margin-top:54px;align-items:start}
+.resa-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:32px;margin-top:50px;align-items:start}
 .resa-grid>*{min-width:0}
 .panel{display:flex;flex-direction:column;gap:16px}
 .panel>div{min-width:0}
@@ -234,7 +263,6 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,246,2
 .up .ok-badge{position:absolute;top:8px;right:8px;background:var(--jelly);color:#fff;border-radius:999px;padding:4px 12px;font-size:10.5px;font-weight:700;display:none;letter-spacing:.06em}
 .up.done .ok-badge{display:block}
 .up input{display:none}
-/* devis */
 .devis{background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:var(--radius);padding:30px;position:sticky;top:90px;box-shadow:var(--bs)}
 .devis h3{font-family:'Baloo 2';font-weight:800;font-size:22px;margin-bottom:18px;text-transform:uppercase}
 .dline{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;font-weight:500;padding:10px 0;border-bottom:2px dashed var(--blush-2)}
@@ -253,25 +281,24 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,246,2
 @media(max-width:560px){.opts,.fields,.uploads{grid-template-columns:1fr}.card{padding:22px 18px}}
 
 /* ---------- règles ---------- */
-/* FRAMER : natif (grid de frames) */
-.regles{background:var(--creme)}
-.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
-.rule{background:#fff;border:3px solid var(--ink);border-radius:var(--radius);padding:26px;transition:var(--tr);box-shadow:var(--bs-sm)}
+.regles{background:var(--creme);padding-top:90px}
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.rule{background:#fff;border:3px solid var(--ink);border-radius:var(--radius);padding:24px;transition:var(--tr);box-shadow:var(--bs-sm)}
 .rule:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
-.rule .num{font-family:'Baloo 2';font-size:13px;color:#fff;background:var(--jelly);font-weight:800;letter-spacing:.06em;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:2.5px solid var(--ink);margin-bottom:14px}
-.rule b{font-size:16px;font-weight:700;display:block;margin-bottom:6px}
-.rule p{font-size:13.5px;font-weight:400;line-height:1.6;opacity:.8}
-@media(max-width:820px){.rules-grid{grid-template-columns:1fr 1fr}}
+.rule .num{font-family:'Baloo 2';font-size:13px;color:#fff;background:var(--jelly);font-weight:800;letter-spacing:.06em;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:2.5px solid var(--ink);margin-bottom:12px}
+.rule b{font-size:15.5px;font-weight:700;display:block;margin-bottom:5px}
+.rule p{font-size:13px;font-weight:400;line-height:1.55;opacity:.8}
+@media(max-width:820px){.rules-grid{grid-template-columns:1fr 1fr;gap:12px}}
 @media(max-width:560px){.rules-grid{grid-template-columns:1fr}}
 
 /* ---------- MOSAÏQUE INSTA ---------- */
-/* FRAMER : grid Framer natif ; tuile vidéo = composant vidéo (autoplay muted loop) */
-.feed{background:var(--jelly);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);color:#fff}
+/* FRAMER : grid natif desktop + carrousel horizontal natif mobile */
+.feed{background:var(--jelly);color:#fff;padding-bottom:120px}
 .feed .kicker{background:var(--ink);color:var(--blush)}
 .feed h2.display{color:#fff}
 .feed h2.display .hollow{-webkit-text-stroke-color:#fff}
 .feed .lead{color:rgba(255,255,255,.9)}
-.feed-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.feed-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
 .feed-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .ft{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;border:3px solid var(--ink);background:var(--magenta);transition:var(--tr)}
 .ft img,.ft video{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -280,69 +307,95 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,246,2
 .ft .heart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;background:rgba(58,16,36,.35);opacity:0;transition:opacity .25s}
 .ft:hover .heart{opacity:1}
 .ft.vid::after{content:'▶';position:absolute;top:10px;right:12px;color:#fff;font-size:14px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
-.feed-cta{margin-top:44px;text-align:center}
-@media(max-width:900px){.feed-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.feed-grid{grid-template-columns:repeat(2,1fr)}}
+.feed-cta{margin-top:40px;text-align:center}
+@media(max-width:900px){
+  /* mobile : 1 rangée scrollable — coupe la longueur de page */
+  .feed-grid{display:flex;overflow-x:auto;gap:11px;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin}
+  .ft{flex:0 0 44vw;max-width:220px;scroll-snap-align:start}
+}
 
-/* ---------- FAQ ---------- */
-/* FRAMER : composant accordion natif */
-.faq{background:#fff}
-.faq-list{margin-top:44px;border-top:3px solid var(--ink)}
-.faq-item{border-bottom:3px solid var(--ink)}
-.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 4px;font-family:'Baloo 2';font-weight:800;font-size:18px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:14px}
-.faq-q .plus{color:var(--jelly);font-size:26px;font-weight:400;transition:transform .3s;font-family:'Outfit';flex-shrink:0}
-.faq-item.open .plus{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 4px}
-.faq-item.open .faq-a{max-height:240px;padding-bottom:22px}
-.faq-a p{font-size:14.5px;font-weight:400;line-height:1.7;max-width:640px;opacity:.8}
-
-/* ---------- avis ---------- */
-/* FRAMER : natif (cards) */
-.avis-sec{background:var(--blush)}
-.avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
-.avis{background:#fff;border:3px solid var(--ink);border-radius:var(--radius);padding:28px;position:relative;box-shadow:var(--bs-sm)}
+/* ---------- AVIS — carousel auto (style Moon) ---------- */
+/* FRAMER : composant code "TestimonialCarousel" (repris de Moon, re-skinné) */
+.avis-sec{background:var(--blush);overflow:clip;padding-bottom:120px}
+.avis-rail{margin-top:50px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.avis-track{display:flex;gap:18px;width:max-content;animation:avisScroll 36s linear infinite}
+.avis-rail:hover .avis-track{animation-play-state:paused}
+@keyframes avisScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.avis{background:#fff;border:3px solid var(--ink);border-radius:var(--radius);padding:26px;position:relative;box-shadow:var(--bs-sm);width:330px;flex-shrink:0}
 .avis::before{content:'“';font-family:'Fraunces';font-size:64px;line-height:0;color:var(--blush-2);position:absolute;top:34px;right:22px}
-.avis .stars{color:var(--jelly);letter-spacing:3px;font-size:13px;margin-bottom:14px}
-.avis p{font-family:'Fraunces';font-style:italic;font-size:16px;line-height:1.5;margin-bottom:16px}
+.avis .stars{color:var(--jelly);letter-spacing:3px;font-size:13px;margin-bottom:12px}
+.avis p{font-family:'Fraunces';font-style:italic;font-size:15.5px;line-height:1.5;margin-bottom:14px}
 .avis b{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;font-family:'Baloo 2';font-style:normal;color:var(--deep)}
 .avis small{display:block;font-size:11.5px;font-weight:400;margin-top:3px;opacity:.7}
-.illu-note{font-size:11.5px;font-weight:400;margin-top:32px;font-style:italic;opacity:.65}
-@media(max-width:820px){.avis-grid{grid-template-columns:1fr}}
+.illu-note{font-size:11.5px;font-weight:400;margin-top:26px;font-style:italic;opacity:.65}
+@media(max-width:560px){.avis{width:280px;padding:22px}}
 
-/* ---------- studio ---------- */
-/* FRAMER : natif */
-.studio{background:var(--plum);color:#FFE3EF;overflow:clip;border-top:3px solid var(--ink)}
-.studio::before{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;background:var(--grad);opacity:.25;border-radius:38% 62% 55% 45%/48% 40% 60% 52%;filter:blur(30px)}
-.studio-grid{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center;position:relative}
-.studio h2.display{color:#fff}
-.studio h2.display .hollow{-webkit-text-stroke-color:#FF8FC6}
-.studio .kicker{background:var(--jelly);color:#fff}
-.studio p{color:rgba(255,214,232,.65);font-weight:400;max-width:480px;font-size:15px}
-.rer{display:inline-flex;align-items:center;gap:10px;background:#E2231A;color:#fff;font-weight:700;padding:9px 20px;border-radius:999px;font-size:14px;margin:20px 0 24px;border:3px solid #fff}
-.rer .badge{background:#fff;color:#E2231A;border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
-.studio-meta{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.05);border:2px solid rgba(255,143,198,.3);padding:16px 22px;border-radius:999px}
-.studio-meta img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2.5px solid var(--jelly)}
-.studio-meta b{font-size:14px;display:block;color:#fff}
-.studio-meta small{font-size:12px;color:rgba(255,214,232,.55);font-weight:400}
-@media(max-width:820px){.studio-grid{grid-template-columns:1fr}}
+/* ---------- FOOTER artistique (studio intégré) ---------- */
+/* FRAMER : frame native + wordmark géant + colonnes */
+footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;overflow:clip;position:relative}
+.foot-word{font-family:'Baloo 2';font-weight:800;text-transform:uppercase;font-size:clamp(44px,9.5vw,130px);line-height:.9;letter-spacing:-.01em;color:transparent;-webkit-text-stroke:2px var(--jelly);white-space:nowrap;opacity:.85;user-select:none;margin-bottom:8px}
+.foot-word em{font-style:normal;color:var(--jelly);-webkit-text-stroke:0}
+.foot-grid{max-width:1180px;margin:36px auto 0;padding:0 24px;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:36px;align-items:start}
+.foot-grid h5{font-family:'Baloo 2';font-weight:800;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF8FC6;margin-bottom:14px}
+.foot-grid p,.foot-grid a{font-size:14px;color:rgba(255,214,232,.7);text-decoration:none;font-weight:400}
+.foot-grid a{display:flex;align-items:center;gap:9px;padding:4px 0;transition:var(--tr)}
+.foot-grid a:hover{color:#fff}
+.foot-grid a svg{width:17px;height:17px}
+.foot-studio{display:flex;gap:14px;align-items:center;margin-top:6px}
+.foot-studio img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid var(--jelly)}
+.foot-studio b{color:#fff;font-size:14.5px;display:block}
+.foot-studio small{font-size:12px;color:rgba(255,214,232,.55)}
+.rer{display:inline-flex;align-items:center;gap:9px;background:#E2231A;color:#fff;font-weight:700;padding:7px 16px;border-radius:999px;font-size:13px;margin-top:12px;border:2.5px solid #fff}
+.rer .badge{background:#fff;color:#E2231A;border-radius:5px;width:21px;height:21px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800}
+.foot-cta{background:var(--jelly);color:#fff;border:3px solid #fff;border-radius:999px;padding:16px 30px;font-family:'Baloo 2';font-weight:800;font-size:15px;text-decoration:none;display:inline-flex;box-shadow:0 14px 34px -8px rgba(224,51,140,.6);transition:var(--tr);white-space:nowrap}
+.foot-cta:hover{transform:translateY(-3px)}
+.foot-bottom{max-width:1180px;margin:52px auto 0;padding:26px 24px 0;border-top:2px dashed rgba(255,143,198,.25);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:11px;letter-spacing:.06em;opacity:.6}
+.foot-bottom .champa{color:var(--jelly)}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}.foot-word{white-space:normal}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr;gap:26px}}
 
-/* ---------- footer ---------- */
-footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;border-top:2px dashed rgba(255,143,198,.25)}
-.foot{max-width:1180px;margin:0 auto;padding:40px 24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.foot .brand span{color:#FFE3EF}
-.foot-links{display:flex;gap:24px;flex-wrap:wrap}
-.foot-links a{color:rgba(255,214,232,.6);text-decoration:none;font-size:13px;font-weight:500;transition:var(--tr)}
-.foot-links a:hover{color:#FF8FC6}
-.foot .demo{font-size:10.5px;letter-spacing:.08em;opacity:.5;width:100%;text-align:center;margin-top:28px}
+/* ---------- SOCIAL FLOAT (style Moon) ---------- */
+/* FRAMER : composant code "SocialFloat" (repris de Moon, re-skinné jelly) */
+.social-float{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:10px}
+.social-float a{width:46px;height:46px;border-radius:50%;background:#fff;border:3px solid var(--ink);box-shadow:var(--bs-sm);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:var(--tr)}
+.social-float a:hover{background:var(--jelly);color:#fff;transform:translate(-2px,-2px)}
+.social-float a svg{width:20px;height:20px}
+@media(max-width:1240px){.social-float{display:none}}
 
-/* ---------- sticky bar ---------- */
+/* ---------- CHATBOT JAM (style Moon, remplace la FAQ) ---------- */
+/* FRAMER : composant code Workshop "JamChatbot" (Q/R scriptées) */
+.jam-fab{position:fixed;right:16px;bottom:88px;z-index:120;width:60px;height:60px;border-radius:50%;background:var(--jelly);border:3px solid var(--ink);box-shadow:var(--bs-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.jam-fab:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.jam-fab svg{width:30px;height:30px;animation:wobble 5s ease-in-out infinite}
+.jam-fab .dot{position:absolute;top:-2px;right:-2px;width:16px;height:16px;border-radius:50%;background:#fff;border:2.5px solid var(--ink)}
+.jam-panel{position:fixed;right:16px;bottom:160px;z-index:130;width:min(370px,calc(100vw - 28px));max-height:min(560px,calc(100svh - 180px));background:#fff;border:3px solid var(--ink);border-radius:22px;box-shadow:var(--bs);display:none;flex-direction:column;overflow:hidden}
+.jam-panel.open{display:flex}
+.jam-head{background:var(--jelly);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--ink)}
+.jam-head .avatar{width:38px;height:38px;border-radius:50%;background:#fff;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.jam-head .avatar svg{width:22px;height:22px}
+.jam-head b{font-family:'Baloo 2';font-weight:800;font-size:16px;display:block;line-height:1.1}
+.jam-head small{font-size:11px;opacity:.9}
+.jam-head .jam-x{margin-left:auto;background:var(--ink);color:#fff;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;font-family:'Outfit'}
+.jam-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--creme)}
+.jam-msg{max-width:85%;padding:11px 15px;border-radius:16px;font-size:13.5px;line-height:1.5;font-weight:500}
+.jam-msg.bot{background:#fff;border:2.5px solid var(--blush-2);border-bottom-left-radius:4px;align-self:flex-start}
+.jam-msg.user{background:var(--jelly);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.jam-msg.typing{display:flex;gap:4px;align-items:center}
+.jam-msg.typing i{width:7px;height:7px;border-radius:50%;background:var(--jelly);animation:blink 1s infinite}
+.jam-msg.typing i:nth-child(2){animation-delay:.2s}
+.jam-msg.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.jam-chips{padding:10px 14px;display:flex;gap:8px;flex-wrap:wrap;background:var(--creme);border-top:2px dashed var(--blush-2)}
+.jam-chip{background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:7px 14px;font-family:'Baloo 2';font-weight:700;font-size:11.5px;cursor:pointer;transition:var(--tr)}
+.jam-chip:hover{background:var(--jelly);color:#fff}
+@media(max-width:560px){.jam-fab{bottom:82px;right:12px;width:54px;height:54px}.jam-panel{bottom:146px}}
+
+/* ---------- sticky bar / modal ---------- */
 .sticky-bar{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:99;background:#fff;border:3px solid var(--ink);border-radius:999px;box-shadow:var(--bs-sm);display:flex;align-items:center;gap:14px;padding:8px 9px 8px 22px;width:min(430px,calc(100% - 24px));justify-content:space-between}
 .sticky-bar .sb-devis{display:flex;flex-direction:column;line-height:1.15}
 .sticky-bar .sb-devis small{font-size:9.5px;letter-spacing:.2em;font-weight:800;text-transform:uppercase;opacity:.6}
 .sticky-bar .sb-devis b{font-family:'Baloo 2';font-weight:800;font-size:20px;color:var(--jelly)}
 .sticky-bar .btn{padding:11px 22px;font-size:13.5px;box-shadow:3px 3px 0 var(--ink)}
-
-/* ---------- modal ---------- */
 .modal-bg{position:fixed;inset:0;background:rgba(43,14,30,.75);backdrop-filter:blur(6px);z-index:200;display:none;align-items:center;justify-content:center;padding:16px}
 .modal-bg.show{display:flex}
 .modal{background:#fff;border:3px solid var(--ink);border-radius:24px;max-width:440px;width:100%;padding:36px;text-align:center;color:var(--ink);max-height:90svh;overflow-y:auto;animation:pop .3s cubic-bezier(.2,1.2,.4,1);box-shadow:var(--bs)}
@@ -357,41 +410,61 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
 .spin{width:40px;height:40px;border-radius:50%;border:4px solid var(--blush);border-top-color:var(--jelly);animation:rot 1s linear infinite;margin:18px auto}
 @keyframes rot{to{transform:rotate(360deg)}}
 
-/* ---------- MOBILE ---------- */
+/* ---------- MOBILE global (page plus courte) ---------- */
 @media(max-width:900px){
-  section{padding:76px 0}
-  .hero-grid{grid-template-columns:1fr;gap:0;padding:110px 0 40px}
-  .jelly-stage{min-height:380px;order:-1;margin-bottom:8px}
-  h1.display{font-size:clamp(40px,11vw,58px)}
-  h2.display{font-size:clamp(32px,9vw,44px)}
+  section{padding:60px 0}
+  .hero-grid{grid-template-columns:1fr;gap:0;padding:96px 0 30px}
+  .jelly-stage{min-height:340px;order:-1;margin-bottom:4px}
+  h1.display{font-size:clamp(38px,10.5vw,56px)}
+  h2.display{font-size:clamp(30px,8.5vw,42px)}
+  .histoire,.resa,.feed,.avis-sec{padding-bottom:80px}
 }
 @media(max-width:560px){
   .wrap{padding:0 18px}
-  .hero p.sub{font-size:15.5px}
+  .hero p.sub{font-size:15px;margin-bottom:24px}
   .hero .cta-row .btn{width:100%}
   .hero-stats{gap:8px}
-  .hero-stats>div{padding:8px 14px;flex:1;min-width:0;text-align:center}
-  .quote-band blockquote{font-size:18px}
+  .hero-stats>div{padding:8px 12px;flex:1;min-width:0;text-align:center}
+  .quote-band blockquote{font-size:17px}
   .na-band{flex-direction:column;align-items:flex-start}
   .na-band .btn{width:100%}
   .day{min-width:56px}
   .modal{padding:26px 22px}
   .devis{padding:24px 20px}
   .gal-head .btn,.feed-head .btn{width:100%}
-  .jelly-stage{min-height:320px}
+  .jelly-stage{min-height:300px}
+  .chapitre{padding:24px 0}
 }
 @media(prefers-reduced-motion:reduce){
-  .marquee-inner{animation:none}
+  .marquee-inner,.avis-track{animation:none}
   .rv{opacity:1;transform:none;transition:none}
-  .sticker.spin,.brand svg{animation:none}
+  .sticker.spin,.brand svg,.jam-fab svg{animation:none}
 }
 </style>
 </head>
 <body>
 
+<!-- symboles réutilisables : dok champa (fleur lao), IG, TikTok, mail, jelly -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="champa" viewBox="0 0 24 24">
+    <g fill="currentColor">
+      <path d="M12 2.6c1.7 0 2.8 1.6 2.3 3.2L12 11.4 9.7 5.8C9.2 4.2 10.3 2.6 12 2.6Z"/>
+      <path d="M12 2.6c1.7 0 2.8 1.6 2.3 3.2L12 11.4 9.7 5.8C9.2 4.2 10.3 2.6 12 2.6Z" transform="rotate(72 12 12)"/>
+      <path d="M12 2.6c1.7 0 2.8 1.6 2.3 3.2L12 11.4 9.7 5.8C9.2 4.2 10.3 2.6 12 2.6Z" transform="rotate(144 12 12)"/>
+      <path d="M12 2.6c1.7 0 2.8 1.6 2.3 3.2L12 11.4 9.7 5.8C9.2 4.2 10.3 2.6 12 2.6Z" transform="rotate(216 12 12)"/>
+      <path d="M12 2.6c1.7 0 2.8 1.6 2.3 3.2L12 11.4 9.7 5.8C9.2 4.2 10.3 2.6 12 2.6Z" transform="rotate(288 12 12)"/>
+    </g>
+    <circle cx="12" cy="12" r="2.4" fill="currentColor" opacity=".45"/>
+  </symbol>
+  <symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="tk" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.6 4 3.9v3c-1.6 0-3-.5-4-1.3v6.3c0 3.4-2.4 5.8-5.7 5.8A5.5 5.5 0 0 1 5.4 15c0-3.2 2.5-5.6 5.9-5.5v3.1c-1.6-.2-2.9.8-2.9 2.4 0 1.5 1.1 2.6 2.5 2.6 1.6 0 2.7-1.1 2.7-2.9V3h3Z"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4.5 7.5 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="jellyico" viewBox="0 0 64 64"><path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="#fff"/><path d="M24 15 Q26 12 29 13 L27 24 24 24 Z" fill="#FFD9EC"/></symbol>
+</svg>
+
 <div id="cur"></div><div id="cur2"></div>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= HEADER — MENU JELLY ================= -->
 <header>
   <nav class="nav">
     <a class="brand" href="#top">
@@ -399,21 +472,34 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
         <defs><linearGradient id="jg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6EB4"/><stop offset="1" stop-color="#C2186F"/></linearGradient></defs>
         <path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="url(#jg1)"/>
         <path d="M24 15 Q26 12 29 13 L27 24 24 24 Z" fill="#fff" opacity=".55"/>
-        <ellipse cx="40" cy="17" rx="3" ry="4.5" fill="#fff" opacity=".5" transform="rotate(15 40 17)"/>
       </svg>
       <span>THE WORLD OF JELLY</span>
     </a>
-    <div class="nav-links">
+    <div class="pillnav">
       <a href="#travail">Le travail</a>
       <a href="#histoire">L'histoire</a>
       <a href="#tarifs">Tarifs</a>
-      <a class="btn btn-solid" href="#reservation">Réserver</a>
+      <a class="cta" href="#reservation">Réserver 💅</a>
     </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
 
+<!-- menu mobile plein écran -->
+<div class="mobmenu" id="mobmenu">
+  <button class="close-m" id="mobclose">✕</button>
+  <a class="mlink" href="#travail"><svg class="champa"><use href="#champa"/></svg>Le travail</a>
+  <a class="mlink" href="#histoire"><svg class="champa"><use href="#champa"/></svg>L'histoire</a>
+  <a class="mlink" href="#tarifs"><svg class="champa"><use href="#champa"/></svg>Tarifs</a>
+  <a class="mlink" href="#reservation"><svg class="champa"><use href="#champa"/></svg>Réserver</a>
+  <div class="msoc">
+    <a href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="22" height="22"><use href="#ig"/></svg></a>
+    <a href="https://www.tiktok.com/@theworldofjelly" target="_blank" rel="noopener" aria-label="TikTok"><svg width="22" height="22"><use href="#tk"/></svg></a>
+    <a href="mailto:theworldof.jelly93@gmail.com" aria-label="Mail"><svg width="22" height="22"><use href="#mail"/></svg></a>
+  </div>
+</div>
+
 <!-- ================= HERO 3D ================= -->
-<!-- FRAMER : texte natif + brique 3D = embed Spline (jelly rose glossy, wobble, follow cursor, bounce au clic) -->
 <section class="hero" id="top">
   <div class="wrap">
     <div class="hero-grid">
@@ -435,16 +521,18 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
         <div class="jelly-shadow"></div>
         <canvas id="jelly-canvas"></canvas>
         <div class="hero-fallback" id="hero-fallback"><img src="assets/hero.jpg" alt="Set chrome 3D sculpté main — The World of Jelly"></div>
-        <div class="jelly-hint">clique dessus, elle rebondit 👆</div>
+        <div class="jelly-hint">touche-la, elle rebondit 👆</div>
       </div>
     </div>
   </div>
 </section>
+<!-- coulée jelly hero → marquee -->
+<svg class="drip" style="color:var(--blush)" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,0 L1440,0 L1440,26 C1408,26 1400,58 1372,60 C1340,62 1348,30 1316,30 C1284,30 1292,74 1258,76 C1226,78 1234,34 1200,32 C1168,30 1176,52 1142,54 C1110,56 1118,22 1084,24 C1052,26 1060,66 1026,68 C994,70 1002,36 968,34 C936,32 944,58 910,58 C878,58 886,20 852,22 C820,24 828,80 794,82 C762,84 770,38 736,36 C704,34 712,54 678,56 C646,58 654,24 620,24 C588,24 596,62 562,64 C530,66 538,30 504,30 C472,30 480,56 446,58 C414,60 422,18 388,20 C356,22 364,70 330,72 C298,74 306,32 272,32 C240,32 248,52 214,54 C182,56 190,26 156,26 C124,26 132,60 98,62 C66,64 74,28 40,28 C18,28 10,26 0,26 Z"/></svg>
 
 <!-- ================= MARQUEE ================= -->
 <div class="marquee"><div class="marquee-inner">
-  <span>Press On sur mesure</span><span class="star">✦</span><span>Gel X</span><span class="star">✦</span><span>Peint main</span><span class="star">✦</span><span>3D & charms</span><span class="star">✦</span><span>Noisiel · 2 min RER A</span><span class="star">✦</span><span>Anti basic nails</span><span class="star">✦</span>
-  <span>Press On sur mesure</span><span class="star">✦</span><span>Gel X</span><span class="star">✦</span><span>Peint main</span><span class="star">✦</span><span>3D & charms</span><span class="star">✦</span><span>Noisiel · 2 min RER A</span><span class="star">✦</span><span>Anti basic nails</span><span class="star">✦</span>
+  <span>Press On sur mesure</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Gel X</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Peint main</span><span><svg class="champa"><use href="#champa"/></svg></span><span>3D & charms</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Noisiel · 2 min RER A</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Anti basic nails</span><span><svg class="champa"><use href="#champa"/></svg></span>
+  <span>Press On sur mesure</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Gel X</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Peint main</span><span><svg class="champa"><use href="#champa"/></svg></span><span>3D & charms</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Noisiel · 2 min RER A</span><span><svg class="champa"><use href="#champa"/></svg></span><span>Anti basic nails</span><span><svg class="champa"><use href="#champa"/></svg></span>
 </div></div>
 
 <!-- ================= GALERIE ================= -->
@@ -454,35 +542,36 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
       <div>
         <div class="kicker">01 — Le travail</div>
         <h2 class="display">Pièces <span class="hollow">uniques</span></h2>
-        <p class="lead">Peint à la main, sculpté en relief, monté charm par charm. Voici ce qui sort du studio — et ce que tu peux réserver.</p>
+        <p class="lead">Un trait de tatoueuse, un œil de peintre. Chaque set est peint à la main, sculpté en relief, monté charm par charm.</p>
+        <div class="lao-band"></div>
       </div>
-      <a class="btn" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">@theworldof_jelly ↗</a>
+      <a class="btn" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener"><svg width="17" height="17"><use href="#ig"/></svg>@theworldof_jelly</a>
     </div>
     <div class="gal-grid">
-      <div class="gw big rv"><img src="assets/art-6.jpg" alt="Papillons 3D rose et vert" loading="lazy" onerror="this.remove()"><span class="tag">Papillons 3D</span></div>
-      <div class="gw rv"><img src="assets/art-1.jpg" alt="Set picnic 3D rose et vert" loading="lazy" onerror="this.remove()"><span class="tag">Sculpté main</span></div>
-      <div class="gw rv"><img src="assets/art-2.jpg" alt="Stiletto rouge baroque" loading="lazy" onerror="this.remove()"><span class="tag">Baroque</span></div>
-      <div class="gw rv"><img src="assets/art-4.jpg" alt="Perles et cœurs" loading="lazy" onerror="this.remove()"><span class="tag">Perles & cœurs</span></div>
-      <div class="gw rv"><img src="assets/art-5.jpg" alt="Charms et french revisité" loading="lazy" onerror="this.remove()"><span class="tag">Charms</span></div>
-      <div class="gw rv"><img src="assets/art-3.jpg" alt="Stiletto tropical" loading="lazy" onerror="this.remove()"><span class="tag">Fleurs 3D</span></div>
-      <div class="gw rv"><img src="assets/art-7.jpg" alt="Fine line noir et or" loading="lazy" onerror="this.remove()"><span class="tag">Fine line</span></div>
-      <div class="gw rv"><img src="assets/art-8.jpg" alt="Coffin nude nœuds roses" loading="lazy" onerror="this.remove()"><span class="tag">Nœuds & studs</span></div>
+      <div class="gw big rv"><img src="assets/art-6.jpg" alt="Papillons 3D rose et vert" loading="lazy" onerror="this.remove()"><span class="tag">Papillons 3D</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw rv"><img src="assets/art-1.jpg" alt="Set picnic 3D rose et vert" loading="lazy" onerror="this.remove()"><span class="tag">Sculpté main</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw rv"><img src="assets/art-2.jpg" alt="Stiletto rouge baroque" loading="lazy" onerror="this.remove()"><span class="tag">Baroque</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw rv"><img src="assets/art-4.jpg" alt="Perles et cœurs" loading="lazy" onerror="this.remove()"><span class="tag">Perles & cœurs</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw rv"><img src="assets/art-5.jpg" alt="Charms et french revisité" loading="lazy" onerror="this.remove()"><span class="tag">Charms</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw rv"><img src="assets/art-3.jpg" alt="Stiletto tropical" loading="lazy" onerror="this.remove()"><span class="tag">Fleurs 3D</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw mob-hide rv"><img src="assets/art-7.jpg" alt="Fine line noir et or" loading="lazy" onerror="this.remove()"><span class="tag">Fine line</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
+      <div class="gw mob-hide rv"><img src="assets/art-8.jpg" alt="Coffin nude nœuds roses" loading="lazy" onerror="this.remove()"><span class="tag">Nœuds & studs</span><a class="ig-mini" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Voir sur Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a></div>
     </div>
     <div class="quote-band rv">
-      <blockquote>« Un tableau que je réalise sur toile, puis que je <mark>reporte sur mes press on</mark>. »<cite>Jelly — nail artist, Noisiel</cite></blockquote>
+      <blockquote>« Un tableau que je réalise sur toile, puis que je <mark>reporte sur mes press on</mark>. »<cite>Jelly — nail artist & peintre, Noisiel</cite></blockquote>
       <a class="btn btn-solid" href="#reservation">Réserver le mien</a>
     </div>
   </div>
 </section>
 
-<!-- ================= HISTOIRE — MON UNIVERS D'ART MOBILE ================= -->
-<!-- FRAMER : section native (scroll variants) + composant vidéo sticky -->
+<!-- ================= HISTOIRE (sans vidéo) ================= -->
 <section id="histoire" class="histoire">
   <div class="wrap">
     <div class="rv">
       <div class="kicker">02 — L'histoire</div>
       <h2 class="display">Mon univers<br><span class="hollow">d'art mobile</span></h2>
       <p class="lead">Ce ne sont pas « des ongles ». C'est une pratique d'artiste — racontée avec ses mots à elle.</p>
+      <div class="lao-band light"></div>
     </div>
     <div class="hist-grid">
       <div>
@@ -496,22 +585,28 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
           <div class="chap-num">02</div>
           <h3>Deux ans à construire</h3>
           <p>Pas de raccourci. Des clientes qui reviennent, un trait qui s'affirme, une confiance qui se gagne set après set.</p>
-          <blockquote>« Merci à celles qui m'ont fait confiance et m'ont permis de laisser parler ma créativité et mon imagination durant ces deux dernières années. Grâce à vous, <mark>j'ai moi-même pris confiance en mon travail</mark>. »</blockquote>
+          <blockquote>« Grâce à vous, <mark>j'ai moi-même pris confiance en mon travail</mark>. »</blockquote>
         </div>
         <div class="chapitre rv">
           <div class="chap-num">03</div>
           <h3>Aujourd'hui</h3>
-          <p>Des tableaux peints sur toile, reportés en pièces uniques sur press on — au studio, à Noisiel. Chaque set quitte l'atelier comme une œuvre : le tien n'existera qu'en un exemplaire.</p>
+          <p>Des tableaux peints sur toile, reportés en pièces uniques sur press on — au studio, à Noisiel.</p>
           <blockquote>« Un tableau que je réalise <mark>sur toile</mark>, puis que je <mark>reporte sur mes press on</mark>. »</blockquote>
         </div>
       </div>
-      <div class="hist-video rv">
-        <video src="assets/story-reel-web.mp4" poster="assets/story-poster.jpg" autoplay muted loop playsinline controls preload="auto"></video>
-        <div class="vcap">L'atelier, en vrai — @theworldof_jelly</div>
+      <div class="hist-visual rv">
+        <div class="toile">
+          <div class="portrait-badge"><img src="assets/portrait.jpg" alt="Jelly, nail artist" onerror="this.parentElement.remove()"></div>
+          <img src="assets/look-3.jpg" alt="Œuvre The World of Jelly" onerror="this.src='assets/art-6.jpg'">
+          <span class="tag-toile">De la toile à l'ongle</span>
+        </div>
+        <div class="vcap"><svg class="champa" style="color:var(--jelly)"><use href="#champa"/></svg> studio Noisiel — depuis 2 ans</div>
       </div>
     </div>
   </div>
 </section>
+<!-- coulée plum → tarifs -->
+<svg class="drip" style="color:var(--plum);margin-top:-60px" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,0 L1440,0 L1440,26 C1408,26 1400,58 1372,60 C1340,62 1348,30 1316,30 C1284,30 1292,74 1258,76 C1226,78 1234,34 1200,32 C1168,30 1176,52 1142,54 C1110,56 1118,22 1084,24 C1052,26 1060,66 1026,68 C994,70 1002,36 968,34 C936,32 944,58 910,58 C878,58 886,20 852,22 C820,24 828,80 794,82 C762,84 770,38 736,36 C704,34 712,54 678,56 C646,58 654,24 620,24 C588,24 596,62 562,64 C530,66 538,30 504,30 C472,30 480,56 446,58 C414,60 422,18 388,20 C356,22 364,70 330,72 C298,74 306,32 272,32 C240,32 248,52 214,54 C182,56 190,26 156,26 C124,26 132,60 98,62 C66,64 74,28 40,28 C18,28 10,26 0,26 Z"/></svg>
 
 <!-- ================= TARIFS ================= -->
 <section class="tarifs" id="tarifs">
@@ -547,7 +642,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
 </section>
 
 <!-- ================= RÉSERVATION (parcours v3 intact) ================= -->
-<!-- FRAMER : brique code → composant Workshop "JellyResa" (logique JS portée telle quelle) -->
+<!-- FRAMER : brique code Workshop "JellyResa" -->
 <section class="resa" id="reservation">
   <div class="wrap">
     <div class="rv">
@@ -622,6 +717,8 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
     </div>
   </div>
 </section>
+<!-- coulée plum → règles -->
+<svg class="drip" style="color:var(--plum);margin-top:-60px" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,0 L1440,0 L1440,26 C1408,26 1400,58 1372,60 C1340,62 1348,30 1316,30 C1284,30 1292,74 1258,76 C1226,78 1234,34 1200,32 C1168,30 1176,52 1142,54 C1110,56 1118,22 1084,24 C1052,26 1060,66 1026,68 C994,70 1002,36 968,34 C936,32 944,58 910,58 C878,58 886,20 852,22 C820,24 828,80 794,82 C762,84 770,38 736,36 C704,34 712,54 678,56 C646,58 654,24 620,24 C588,24 596,62 562,64 C530,66 538,30 504,30 C472,30 480,56 446,58 C414,60 422,18 388,20 C356,22 364,70 330,72 C298,74 306,32 272,32 C240,32 248,52 214,54 C182,56 190,26 156,26 C124,26 132,60 98,62 C66,64 74,28 40,28 C18,28 10,26 0,26 Z"/></svg>
 
 <!-- ================= RÈGLES ================= -->
 <section id="infos" class="regles">
@@ -629,20 +726,20 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
     <div class="rv">
       <div class="kicker">05 — À lire avant de réserver</div>
       <h2 class="display">Les règles<br><span class="hollow">du studio</span></h2>
+      <p class="lead" style="margin-top:6px">Une question ? <b>JAM</b>, l'assistante du studio, répond en bas à droite 💬</p>
     </div>
     <div class="rules-grid">
-      <div class="rule rv"><span class="num">01</span><b>Acompte 50 %</b><p>Ton créneau n'est bloqué qu'après l'acompte de 50 % du prix de la prestation. Non remboursable en cas d'annulation hors délai.</p></div>
-      <div class="rule rv"><span class="num">02</span><b>Reconfirme la veille</b><p>Confirme ta présence la veille de ton rendez-vous avant 22 h — sinon le créneau peut être libéré.</p></div>
-      <div class="rule rv"><span class="num">03</span><b>Retards</b><p>Plus de 15 minutes de retard : +10 €. Au-delà, le rendez-vous est annulé et l'acompte est conservé.</p></div>
-      <div class="rule rv"><span class="num">04</span><b>Annulation 48 h</b><p>Annulation possible jusqu'à 48 h avant le rendez-vous. Passé ce délai, l'acompte est conservé.</p></div>
-      <div class="rule rv"><span class="num">05</span><b>PayPal ou espèces</b><p>L'acompte se règle par PayPal, le reste sur place par PayPal ou en espèces.</p></div>
-      <div class="rule rv"><span class="num">06</span><b>Solo & 18+</b><p>Pas d'accompagnateurs. Les mineurs ne sont pas acceptés. Viens ongles nus — pas de dépose extérieure.</p></div>
+      <div class="rule rv"><span class="num">01</span><b>Acompte 50 %</b><p>Ton créneau n'est bloqué qu'après l'acompte de 50 %. Non remboursable en cas d'annulation hors délai.</p></div>
+      <div class="rule rv"><span class="num">02</span><b>Reconfirme la veille</b><p>Confirme ta présence la veille avant 22 h — sinon le créneau peut être libéré.</p></div>
+      <div class="rule rv"><span class="num">03</span><b>Retards</b><p>Plus de 15 minutes : +10 €. Au-delà, rendez-vous annulé, acompte conservé.</p></div>
+      <div class="rule rv"><span class="num">04</span><b>Annulation 48 h</b><p>Annulation possible jusqu'à 48 h avant. Passé ce délai, l'acompte est conservé.</p></div>
+      <div class="rule rv"><span class="num">05</span><b>PayPal ou espèces</b><p>Acompte par PayPal, le reste sur place par PayPal ou en espèces.</p></div>
+      <div class="rule rv"><span class="num">06</span><b>Solo & 18+</b><p>Pas d'accompagnateurs, pas de mineurs. Viens ongles nus.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ================= MOSAÏQUE INSTA ================= -->
-<!-- FRAMER : grid natif + composant vidéo (autoplay muted loop) pour la tuile vidéo -->
 <section class="feed">
   <div class="wrap">
     <div class="feed-head rv">
@@ -651,7 +748,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
         <h2 class="display">Le feed est<br><span class="hollow">un lookbook</span></h2>
         <p class="lead">Chaque post est un set réel, posé sur une vraie cliente. Fais ton marché.</p>
       </div>
-      <a class="btn btn-dark" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">Suivre @theworldof_jelly ↗</a>
+      <a class="btn btn-dark" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener"><svg width="17" height="17"><use href="#ig"/></svg>Suivre @theworldof_jelly</a>
     </div>
     <div class="feed-grid">
       <a class="ft rv" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener"><img src="assets/look-1.jpg" alt="French bleu peint main" loading="lazy"><span class="heart">🤍</span></a>
@@ -673,100 +770,89 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
     <div class="feed-cta rv"><a class="btn btn-dark" href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">Tout le feed sur Instagram ↗</a></div>
   </div>
 </section>
+<!-- coulée rose → avis -->
+<svg class="drip" style="color:var(--jelly);margin-top:-60px" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,0 L1440,0 L1440,26 C1408,26 1400,58 1372,60 C1340,62 1348,30 1316,30 C1284,30 1292,74 1258,76 C1226,78 1234,34 1200,32 C1168,30 1176,52 1142,54 C1110,56 1118,22 1084,24 C1052,26 1060,66 1026,68 C994,70 1002,36 968,34 C936,32 944,58 910,58 C878,58 886,20 852,22 C820,24 828,80 794,82 C762,84 770,38 736,36 C704,34 712,54 678,56 C646,58 654,24 620,24 C588,24 596,62 562,64 C530,66 538,30 504,30 C472,30 480,56 446,58 C414,60 422,18 388,20 C356,22 364,70 330,72 C298,74 306,32 272,32 C240,32 248,52 214,54 C182,56 190,26 156,26 C124,26 132,60 98,62 C66,64 74,28 40,28 C18,28 10,26 0,26 Z"/></svg>
 
-<!-- ================= FAQ ================= -->
-<section class="faq">
-  <div class="wrap" style="max-width:820px">
-    <div class="rv">
-      <div class="kicker">07 — FAQ</div>
-      <h2 class="display">Questions<br><span class="hollow">fréquentes</span></h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open">
-        <button class="faq-q">Comment je réserve, sans DM ?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Tu composes ta pose dans la réservation : prestation, créneau, tes infos, ta photo d'ongles et ton moodboard. Tu poses l'acompte de 50 % et ton créneau est bloqué automatiquement — plus besoin d'envoyer six messages.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">L'acompte est-il remboursable ?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Non. L'acompte de 50 % bloque ton créneau et n'est pas remboursable. Tu peux annuler jusqu'à 48 h avant le rendez-vous ; au-delà, il est conservé.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Le nail art coûte combien ?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Tout dépend du niveau de détail — une french fine n'est pas un set 3D sculpté main. Envoie ton moodboard dans la réservation : ton devis arrive avant le rendez-vous, pas de surprise sur le fauteuil.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Je peux venir accompagnée ?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Non — pas d'accompagnateurs, pas d'enfants. Et les mineurs ne sont pas acceptés, même accompagnés.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Je viens comment ?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Le studio est à Noisiel (77), à 2 minutes à pied du RER A. L'adresse exacte t'est communiquée après l'acompte, dans ton récap de réservation.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= AVIS ================= -->
+<!-- ================= AVIS — carousel auto ================= -->
 <section class="avis-sec">
   <div class="wrap">
     <div class="rv">
-      <div class="kicker">08 — Elles ont testé</div>
+      <div class="kicker">07 — Elles ont testé</div>
       <h2 class="display">Avis <span class="hollow">clientes</span></h2>
     </div>
-    <div class="avis-grid">
-      <div class="avis rv">
-        <div class="stars">★★★★★</div>
-        <p>« Vraiment de l'or dans les mains. Mon moodboard était chargé, le résultat était encore mieux. »</p>
-        <b>Léa</b><small>Gel X · papillons 3D</small>
-      </div>
-      <div class="avis rv">
-        <div class="stars">★★★★★</div>
-        <p>« Personne n'a les mêmes ongles que moi. Et j'ai réservé en deux minutes, un dimanche soir. »</p>
-        <b>Assa</b><small>Press on · fresque peinte</small>
-      </div>
-      <div class="avis rv">
-        <div class="stars">★★★★★</div>
-        <p>« Le devis nail art avant le rendez-vous, ça change tout. Je savais exactement où j'allais. »</p>
-        <b>Maëlys</b><small>Renforcement · fine line</small>
-      </div>
-    </div>
-    <div class="illu-note">Avis d'illustration — à remplacer par tes vrais retours clientes (ton highlight « avis » en est plein).</div>
   </div>
-</section>
-
-<!-- ================= STUDIO ================= -->
-<section class="studio">
-  <div class="wrap">
-    <div class="studio-grid">
-      <div class="rv">
-        <div class="kicker">09 — Le studio</div>
-        <h2 class="display">Noisiel <span class="hollow">(77)</span></h2>
-        <div class="rer"><span class="badge">A</span> RER A — à 2 minutes à pied</div>
-        <p>L'adresse exacte t'est communiquée après l'acompte, dans ton récap de réservation.</p>
-      </div>
-      <div class="studio-meta rv">
-        <img src="assets/portrait.jpg" alt="Jelly, nail artist" onerror="this.remove()">
-        <div><b>Jelly</b><small>nail artist — press on & gel x<br>@theworldof_jelly</small></div>
-      </div>
+  <div class="avis-rail rv">
+    <div class="avis-track" id="avis-track">
+      <div class="avis"><div class="stars">★★★★★</div><p>« Vraiment de l'or dans les mains. Mon moodboard était chargé, le résultat était encore mieux. »</p><b>Léa</b><small>Gel X · papillons 3D</small></div>
+      <div class="avis"><div class="stars">★★★★★</div><p>« Personne n'a les mêmes ongles que moi. Et j'ai réservé en deux minutes, un dimanche soir. »</p><b>Assa</b><small>Press on · fresque peinte</small></div>
+      <div class="avis"><div class="stars">★★★★★</div><p>« Le devis nail art avant le rendez-vous, ça change tout. Je savais exactement où j'allais. »</p><b>Maëlys</b><small>Renforcement · fine line</small></div>
+      <div class="avis"><div class="stars">★★★★★</div><p>« Un vrai moment d'artiste. Elle m'a montré la toile qui a inspiré mon set. »</p><b>Sarah</b><small>Press on · pièce unique</small></div>
+      <div class="avis"><div class="stars">★★★★★</div><p>« Trois semaines après, pas une écaille. Et les compliments, je ne les compte plus. »</p><b>Inès</b><small>Gel X · charms</small></div>
     </div>
   </div>
+  <div class="wrap"><div class="illu-note rv">Avis d'illustration — à remplacer par tes vrais retours clientes (ton highlight « avis » en est plein).</div></div>
 </section>
+<!-- coulée blush → footer -->
+<svg class="drip" style="color:var(--blush);margin-top:-60px" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,0 L1440,0 L1440,26 C1408,26 1400,58 1372,60 C1340,62 1348,30 1316,30 C1284,30 1292,74 1258,76 C1226,78 1234,34 1200,32 C1168,30 1176,52 1142,54 C1110,56 1118,22 1084,24 C1052,26 1060,66 1026,68 C994,70 1002,36 968,34 C936,32 944,58 910,58 C878,58 886,20 852,22 C820,24 828,80 794,82 C762,84 770,38 736,36 C704,34 712,54 678,56 C646,58 654,24 620,24 C588,24 596,62 562,64 C530,66 538,30 504,30 C472,30 480,56 446,58 C414,60 422,18 388,20 C356,22 364,70 330,72 C298,74 306,32 272,32 C240,32 248,52 214,54 C182,56 190,26 156,26 C124,26 132,60 98,62 C66,64 74,28 40,28 C18,28 10,26 0,26 Z"/></svg>
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= FOOTER ARTISTIQUE (studio intégré) ================= -->
 <footer>
-  <div class="foot">
-    <a class="brand" href="#top">
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="#FF8FC6"/></svg>
-      <span>THE WORLD OF JELLY</span>
-    </a>
-    <div class="foot-links">
-      <a href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com/@theworldofjelly" target="_blank" rel="noopener">TikTok</a>
-      <a href="mailto:theworldof.jelly93@gmail.com">Contact</a>
+  <div class="foot-word" aria-hidden="true">The World <em>of Jelly</em></div>
+  <div class="foot-grid">
+    <div>
+      <h5>Le studio</h5>
+      <div class="foot-studio">
+        <img src="assets/portrait.jpg" alt="Jelly, nail artist" onerror="this.remove()">
+        <div><b>Jelly</b><small>nail artist & peintre<br>press on · gel x</small></div>
+      </div>
+      <p style="margin-top:14px">Noisiel (77) — l'adresse exacte t'est communiquée après l'acompte.</p>
+      <div class="rer"><span class="badge">A</span> RER A — 2 min à pied</div>
     </div>
-    <div class="demo">Maquette de présentation — démo interactive · aucune donnée n'est envoyée · photos & vidéos © @theworldof_jelly</div>
+    <div>
+      <h5>Suivre</h5>
+      <a href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener"><svg><use href="#ig"/></svg>@theworldof_jelly</a>
+      <a href="https://www.tiktok.com/@theworldofjelly" target="_blank" rel="noopener"><svg><use href="#tk"/></svg>@theworldofjelly</a>
+      <a href="mailto:theworldof.jelly93@gmail.com"><svg><use href="#mail"/></svg>theworldof.jelly93@gmail.com</a>
+    </div>
+    <div>
+      <h5>Le site</h5>
+      <a href="#travail">Le travail</a>
+      <a href="#histoire">L'histoire</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#infos">Les règles</a>
+    </div>
+    <div>
+      <a class="foot-cta" href="#reservation">Réserver ta pose 💅</a>
+      <div class="lao-band light" style="margin-top:22px;width:100%"></div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© The World of Jelly — Noisiel <svg class="champa"><use href="#champa"/></svg></span>
+    <span>Maquette de démonstration · aucune donnée envoyée · photos © @theworldof_jelly</span>
   </div>
 </footer>
+
+<!-- ================= SOCIAL FLOAT ================= -->
+<div class="social-float">
+  <a href="https://www.instagram.com/theworldof_jelly/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#ig"/></svg></a>
+  <a href="https://www.tiktok.com/@theworldofjelly" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#tk"/></svg></a>
+  <a href="mailto:theworldof.jelly93@gmail.com" aria-label="Mail"><svg><use href="#mail"/></svg></a>
+</div>
+
+<!-- ================= CHATBOT JAM ================= -->
+<button class="jam-fab" id="jam-fab" aria-label="Ouvrir le chat JAM">
+  <svg viewBox="0 0 64 64"><use href="#jellyico"/></svg>
+  <span class="dot"></span>
+</button>
+<div class="jam-panel" id="jam-panel">
+  <div class="jam-head">
+    <div class="avatar"><svg viewBox="0 0 64 64"><path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="#E0338C"/></svg></div>
+    <div><b>JAM 🍮</b><small>l'assistante du studio — réponses instantanées</small></div>
+    <button class="jam-x" id="jam-x">✕</button>
+  </div>
+  <div class="jam-msgs" id="jam-msgs"></div>
+  <div class="jam-chips" id="jam-chips"></div>
+</div>
 
 <!-- ================= STICKY BAR ================= -->
 <div class="sticky-bar">
@@ -801,7 +887,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.55);padding:0 0 116px;bord
 <script>
 /* ============================================================
    PARCOURS RÉSA — IDENTIQUE V3 (ne pas modifier sans re-test E2E)
-   FRAMER : à porter en composant code Workshop "JellyResa"
+   FRAMER : composant code Workshop "JellyResa"
    ============================================================ */
 const PRESTAS=[
   {id:'gelx',n:'Gel X',d:'extensions · capsules américaines',p:65,cat:'Extensions'},
@@ -922,11 +1008,18 @@ document.getElementById('paypal-btn').onclick=()=>{
 document.getElementById('ok-close').onclick=()=>bg.classList.remove('show');
 bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
 
-document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.classList.toggle('open')});
+/* ============================================================
+   V5 — MENU MOBILE JELLY
+   ============================================================ */
+(()=>{
+  const menu=document.getElementById('mobmenu');
+  document.getElementById('burger').onclick=()=>menu.classList.add('open');
+  document.getElementById('mobclose').onclick=()=>menu.classList.remove('open');
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+})();
 
 /* ============================================================
-   V4 — SCROLL REVEALS
-   FRAMER : équivalent natif = "Scroll variants / Appear effects"
+   V5 — SCROLL REVEALS
    ============================================================ */
 (()=>{
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
@@ -934,8 +1027,7 @@ document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.cl
 })();
 
 /* ============================================================
-   V4 — CURSEUR CUSTOM (desktop)
-   FRAMER : composant code Workshop "JellyCursor" (overlay fixed)
+   V5 — CURSEUR CUSTOM (desktop)
    ============================================================ */
 (()=>{
   if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
@@ -943,115 +1035,156 @@ document.querySelectorAll('.faq-q').forEach(q=>{q.onclick=()=>q.parentElement.cl
   let x=innerWidth/2,y=innerHeight/2,x2=x,y2=y;
   addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;c1.style.left=x+'px';c1.style.top=y+'px'});
   (function loop(){x2+=(x-x2)*.16;y2+=(y-y2)*.16;c2.style.left=x2+'px';c2.style.top=y2+'px';requestAnimationFrame(loop)})();
-  document.querySelectorAll('a,button,.opt,.day,.slot,.up,.gw,.ft,.faq-q,#jelly-stage').forEach(el=>{
+  document.querySelectorAll('a,button,.opt,.day,.slot,.up,.gw,.ft,#jelly-stage').forEach(el=>{
     el.addEventListener('mouseenter',()=>c2.classList.add('grow'));
     el.addEventListener('mouseleave',()=>c2.classList.remove('grow'));
   });
 })();
 
 /* ============================================================
-   V4 — HERO 3D : JELLY GÉLATINE (three.js r128)
-   - flan rose glossy (LatheGeometry) · wobble permanent
-   - suit la souris (rotation + translation lerpées)
-   - rebond squash & stretch au clic / tap
-   FRAMER : remplacer cette brique par une scène Spline embarquée
-   (mêmes interactions : wobble state, look-at cursor, bounce on click)
+   V5 — AVIS carousel auto : duplication de piste
+   FRAMER : composant code "TestimonialCarousel"
+   ============================================================ */
+(()=>{
+  const t=document.getElementById('avis-track');
+  t.innerHTML+=t.innerHTML;
+})();
+
+/* ============================================================
+   V5 — CHATBOT JAM (Q/R scriptées, remplace la FAQ)
+   FRAMER : composant code Workshop "JamChatbot"
+   ============================================================ */
+(()=>{
+  const fab=document.getElementById('jam-fab'),panel=document.getElementById('jam-panel');
+  const msgs=document.getElementById('jam-msgs'),chipsWrap=document.getElementById('jam-chips');
+  const QA=[
+    {q:'Comment je réserve ?',a:"Tu composes ta pose directement sur cette page : prestation, créneau, tes infos, ta photo d'ongles et ton moodboard. Tu poses l'acompte de 50 % et ton créneau est bloqué automatiquement — plus besoin d'envoyer six messages 💅"},
+    {q:"L'acompte ?",a:"50 % du prix de la prestation, non remboursable. Il bloque ton créneau. Tu peux annuler jusqu'à 48 h avant le rendez-vous ; au-delà, il est conservé."},
+    {q:'Le nail art coûte combien ?',a:"Tout dépend du niveau de détail — une french fine n'est pas un set 3D sculpté main. Envoie ton moodboard dans la réservation : ton devis arrive AVANT le rendez-vous, jamais de surprise sur le fauteuil 🎨"},
+    {q:'Je peux venir accompagnée ?',a:"Non — pas d'accompagnateurs, pas d'enfants. Et les mineurs ne sont pas acceptés, même accompagnés 💔"},
+    {q:'Où est le studio ?',a:"À Noisiel (77), à 2 minutes à pied du RER A. L'adresse exacte t'est communiquée après l'acompte, dans ton récap de réservation 📍"},
+    {q:'Les retards ?',a:"Plus de 15 minutes de retard : +10 €. Au-delà, le rendez-vous est annulé et l'acompte est conservé. Et pense à reconfirmer la veille avant 22 h ⏰"},
+  ];
+  function addMsg(txt,who){
+    const m=document.createElement('div');m.className='jam-msg '+who;m.textContent=txt;
+    msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;return m;
+  }
+  function botReply(txt){
+    const t=document.createElement('div');t.className='jam-msg bot typing';t.innerHTML='<i></i><i></i><i></i>';
+    msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
+    setTimeout(()=>{t.remove();addMsg(txt,'bot')},700);
+  }
+  QA.forEach(({q,a})=>{
+    const c=document.createElement('button');c.className='jam-chip';c.textContent=q;
+    c.onclick=()=>{addMsg(q,'user');botReply(a)};
+    chipsWrap.appendChild(c);
+  });
+  let greeted=false;
+  fab.onclick=()=>{
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')&&!greeted){
+      greeted=true;
+      botReply("Coucou, moi c'est JAM 🍮 l'assistante du studio. Pose-moi une question — ou pique une des questions toutes prêtes en dessous 👇");
+    }
+  };
+  document.getElementById('jam-x').onclick=()=>panel.classList.remove('open');
+})();
+
+/* ============================================================
+   V5 — HERO 3D : JELLY GÉLATINE (three.js r128)
+   Wobble permanent · suit la souris · rebond au clic/tap.
+   FALLBACK ANTI-ÉCRAN-VIDE : si three absent, si init échoue,
+   ou si aucune frame rendue après 3,5 s → photo hero.
+   FRAMER : remplacer par une scène Spline embarquée
    ============================================================ */
 (()=>{
   const stage=document.getElementById('jelly-stage');
   const canvas=document.getElementById('jelly-canvas');
-  if(!window.THREE){document.getElementById('hero-fallback').style.display='block';canvas.remove();return}
-  let renderer;
+  let framed=false;
+  const fallback=()=>stage.classList.add('no3d');
+  setTimeout(()=>{if(!framed)fallback()},3500);
+  if(!window.THREE){fallback();return}
   try{
-    renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
-  }catch(e){
-    document.getElementById('hero-fallback').style.display='block';canvas.remove();return;
-  }
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  const scene=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(35,1,.1,50);
-  cam.position.set(0,1.5,7.2);cam.lookAt(0,.5,0);
+    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
+    const scene=new THREE.Scene();
+    const cam=new THREE.PerspectiveCamera(35,1,.1,50);
+    cam.position.set(0,1.5,7.2);cam.lookAt(0,.5,0);
 
-  /* profil du flan jelly (comme son wordmark) */
-  const pts=[];
-  pts.push(new THREE.Vector2(0,0));
-  pts.push(new THREE.Vector2(.72,0));
-  pts.push(new THREE.Vector2(1.02,.06));
-  pts.push(new THREE.Vector2(1.05,.16));
-  pts.push(new THREE.Vector2(.98,.3));
-  pts.push(new THREE.Vector2(.82,.62));
-  pts.push(new THREE.Vector2(.66,.94));
-  pts.push(new THREE.Vector2(.52,1.12));
-  pts.push(new THREE.Vector2(.3,1.24));
-  pts.push(new THREE.Vector2(0,1.28));
-  const geo=new THREE.LatheGeometry(pts,72);
-  geo.scale(.88,.88,.88);
-  const basePos=geo.attributes.position.array.slice();
+    const pts=[];
+    pts.push(new THREE.Vector2(0,0));
+    pts.push(new THREE.Vector2(.72,0));
+    pts.push(new THREE.Vector2(1.02,.06));
+    pts.push(new THREE.Vector2(1.05,.16));
+    pts.push(new THREE.Vector2(.98,.3));
+    pts.push(new THREE.Vector2(.82,.62));
+    pts.push(new THREE.Vector2(.66,.94));
+    pts.push(new THREE.Vector2(.52,1.12));
+    pts.push(new THREE.Vector2(.3,1.24));
+    pts.push(new THREE.Vector2(0,1.28));
+    const geo=new THREE.LatheGeometry(pts,72);
+    geo.scale(.88,.88,.88);
+    const basePos=geo.attributes.position.array.slice();
 
-  const mat=new THREE.MeshPhongMaterial({
-    color:0xE0338C,specular:0x775566,shininess:28,
-    emissive:0x8E0F4F,emissiveIntensity:.12,
-    transparent:true,opacity:.97
-  });
-  const jelly=new THREE.Mesh(geo,mat);
-  jelly.position.y=-.15;
-  scene.add(jelly);
+    const mat=new THREE.MeshPhongMaterial({
+      color:0xE0338C,specular:0x775566,shininess:28,
+      emissive:0x8E0F4F,emissiveIntensity:.12,
+      transparent:true,opacity:.97
+    });
+    const jelly=new THREE.Mesh(geo,mat);
+    jelly.position.y=-.15;
+    scene.add(jelly);
 
-  scene.add(new THREE.AmbientLight(0xFFD9EC,.6));
-  const key=new THREE.DirectionalLight(0xffffff,.85);key.position.set(2.4,3.2,3.6);scene.add(key);
-  const rim=new THREE.PointLight(0xFF6EB4,.9,12);rim.position.set(-2.6,1.4,-1.8);scene.add(rim);
-  const fill=new THREE.PointLight(0xffffff,.35,10);fill.position.set(1.6,.4,2.6);scene.add(fill);
+    scene.add(new THREE.AmbientLight(0xFFD9EC,.6));
+    const key=new THREE.DirectionalLight(0xffffff,.85);key.position.set(2.4,3.2,3.6);scene.add(key);
+    const rim=new THREE.PointLight(0xFF6EB4,.9,12);rim.position.set(-2.6,1.4,-1.8);scene.add(rim);
+    const fill=new THREE.PointLight(0xffffff,.35,10);fill.position.set(1.6,.4,2.6);scene.add(fill);
 
-  function resize(){
-    const w=stage.clientWidth,h=stage.clientHeight;
-    renderer.setSize(w,h,false);
-    cam.aspect=w/h;cam.updateProjectionMatrix();
-  }
-  resize();addEventListener('resize',resize);
-
-  /* interactions */
-  let mx=0,my=0;
-  addEventListener('pointermove',e=>{
-    mx=(e.clientX/innerWidth)*2-1;
-    my=(e.clientY/innerHeight)*2-1;
-  });
-  /* rebond : ressort squash & stretch */
-  let sy=1,vy=0;
-  const bounce=()=>{vy-=.35};
-  stage.addEventListener('pointerdown',bounce);
-
-  const reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const pos=geo.attributes.position;
-  let t=0;
-  function tick(){
-    t+=.016;
-    /* wobble vertex : ondulation qui monte le long du flan */
-    if(!reduced){
-      for(let i=0;i<pos.count;i++){
-        const ox=basePos[i*3],oy=basePos[i*3+1],oz=basePos[i*3+2];
-        const ang=Math.atan2(oz,ox);
-        const w=Math.sin(t*3.1+oy*3.4+ang*2)*.045*(.25+oy*.7)
-              +Math.sin(t*5.3+ang*3+oy*5)*.018*(.2+oy*.6);
-        const r=1+w;
-        pos.array[i*3]=ox*r;
-        pos.array[i*3+2]=oz*r;
-        pos.array[i*3+1]=oy;
-      }
-      pos.needsUpdate=true;
+    function resize(){
+      const w=stage.clientWidth,h=stage.clientHeight;
+      renderer.setSize(w,h,false);
+      cam.aspect=w/h;cam.updateProjectionMatrix();
     }
-    /* ressort du rebond */
-    vy+=(1-sy)*.14;vy*=.86;sy+=vy;
-    jelly.scale.set(1/Math.sqrt(Math.max(sy,.3)),Math.max(sy,.3),1/Math.sqrt(Math.max(sy,.3)));
-    /* suit la souris */
-    jelly.rotation.y+=((mx*.7)-jelly.rotation.y)*.06;
-    jelly.rotation.x+=((my*.22)-jelly.rotation.x)*.06;
-    jelly.position.x+=((mx*.3)-jelly.position.x)*.05;
-    /* respiration idle */
-    jelly.position.y=-.15+Math.sin(t*1.3)*.05;
-    renderer.render(scene,cam);
-    requestAnimationFrame(tick);
-  }
-  tick();
+    resize();addEventListener('resize',resize);
+
+    let mx=0,my=0;
+    addEventListener('pointermove',e=>{
+      mx=(e.clientX/innerWidth)*2-1;
+      my=(e.clientY/innerHeight)*2-1;
+    });
+    let sy=1,vy=0;
+    stage.addEventListener('pointerdown',()=>{vy-=.35});
+
+    const reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const pos=geo.attributes.position;
+    let t=0;
+    function tick(){
+      t+=.016;
+      if(!reduced){
+        for(let i=0;i<pos.count;i++){
+          const ox=basePos[i*3],oy=basePos[i*3+1],oz=basePos[i*3+2];
+          const ang=Math.atan2(oz,ox);
+          const w=Math.sin(t*3.1+oy*3.4+ang*2)*.045*(.25+oy*.7)
+                +Math.sin(t*5.3+ang*3+oy*5)*.018*(.2+oy*.6);
+          const r=1+w;
+          pos.array[i*3]=ox*r;
+          pos.array[i*3+2]=oz*r;
+          pos.array[i*3+1]=oy;
+        }
+        pos.needsUpdate=true;
+      }
+      vy+=(1-sy)*.14;vy*=.86;sy+=vy;
+      jelly.scale.set(1/Math.sqrt(Math.max(sy,.3)),Math.max(sy,.3),1/Math.sqrt(Math.max(sy,.3)));
+      jelly.rotation.y+=((mx*.7)-jelly.rotation.y)*.06;
+      jelly.rotation.x+=((my*.22)-jelly.rotation.x)*.06;
+      jelly.position.x+=((mx*.3)-jelly.position.x)*.05;
+      jelly.position.y=-.15+Math.sin(t*1.3)*.05;
+      renderer.render(scene,cam);
+      framed=true;
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }catch(e){fallback()}
 })();
 </script>
 </body>
