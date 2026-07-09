@@ -427,7 +427,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 .modal .btn{width:100%}
 .modal .close-x{margin-top:14px;background:none;border:none;font-weight:500;cursor:pointer;font-size:12.5px;font-family:'Outfit';opacity:.6}
 .modal .ref{font-family:'Baloo 2';font-size:11px;letter-spacing:.24em;color:var(--jelly);font-weight:800;text-transform:uppercase}
-.spin{width:40px;height:40px;border-radius:50%;border:4px solid var(--blush);border-top-color:var(--jelly);animation:rot 1s linear infinite;margin:18px auto}
+.spin-loader{width:40px;height:40px;border-radius:50%;border:4px solid var(--blush);border-top-color:var(--jelly);animation:rot 1s linear infinite;margin:18px auto}
 @keyframes rot{to{transform:rotate(360deg)}}
 
 /* ---------- MOBILE global (page plus courte) ---------- */
@@ -924,7 +924,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
     <button class="close-x" id="modal-close">← revenir à ma pose</button>
   </div>
   <div class="modal" id="modal-spin" style="display:none">
-    <div class="spin"></div>
+    <div class="spin-loader"></div>
     <h3>Paiement en cours…</h3>
     <p class="mnote">Démo — aucune donnée bancaire réelle n'est traitée.</p>
   </div>
