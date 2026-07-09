@@ -54,8 +54,8 @@ h2.display{font-size:clamp(36px,6vw,80px);margin-bottom:20px}
 /* ---------- séparateur "jelly qui coule" (à la Bragg) ---------- */
 /* FRAMER : SVG exporté, posé entre deux frames pleine couleur.
    color = couleur de la section AU-DESSUS · background = section EN-DESSOUS */
-.drip{display:block;width:100%;height:110px;margin-top:-1px;margin-bottom:-1px;position:relative;z-index:3}
-@media(max-width:560px){.drip{height:64px}}
+.drip{display:block;width:100%;height:124px;margin-top:-1px;margin-bottom:-1px;position:relative;z-index:3}
+@media(max-width:560px){.drip{height:72px}}
 
 /* ---------- frise textile lao (losanges concentriques, réf. tissages) ---------- */
 /* FRAMER : frame décorative répétée (image pattern) */
@@ -122,6 +122,12 @@ header{position:fixed;top:14px;left:0;right:0;z-index:100;pointer-events:none}
   var(--blush);overflow:clip}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;width:100%;padding:120px 0 40px}
 .hero-grid>div:first-child{position:relative;z-index:2}
+/* carousel photos en fond de hero (crossfade auto) + voile rose dégradé */
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slides div{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s ease}
+.hero-slides div.on{opacity:1}
+.hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(255,228,242,.97) 0%,rgba(255,222,238,.9) 42%,rgba(255,201,227,.55) 74%,rgba(255,184,216,.34) 100%)}
+.hero .wrap{position:relative;z-index:2}
 .hero h1{margin:18px 0 22px;color:var(--ink)}
 .hero h1 .row2{color:var(--jelly)}
 .hero p.sub{font-size:17px;max-width:470px;margin-bottom:30px;font-weight:500}
@@ -480,17 +486,37 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
   <symbol id="tk" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.6 4 3.9v3c-1.6 0-3-.5-4-1.3v6.3c0 3.4-2.4 5.8-5.7 5.8A5.5 5.5 0 0 1 5.4 15c0-3.2 2.5-5.6 5.9-5.5v3.1c-1.6-.2-2.9.8-2.9 2.4 0 1.5 1.1 2.6 2.5 2.6 1.6 0 2.7-1.1 2.7-2.9V3h3Z"/></symbol>
   <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4.5 7.5 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="jellyico" viewBox="0 0 64 64"><path d="M14 46 Q12 51 18 51 L46 51 Q52 51 50 46 L44 20 Q42 11 32 11 Q22 11 20 20 Z" fill="#fff"/><path d="M24 15 Q26 12 29 13 L27 24 24 24 Z" fill="#FFD9EC"/></symbol>
-  <!-- coulée jelly : 1 segment de 360px répété ×4 -->
+  <!-- coulée SLIME glossy (réfs Kédi) : gouttes organiques + reflets + sparkles -->
+  <linearGradient id="dgloss" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <path id="dgoutte" d="M-20,0 C-15,28 -13,46 -12,64 A12,13 0 0 0 12,64 C13,46 15,28 20,0 Z"/>
+  <path id="dbosse" d="M-30,0 C-30,26 -14,38 0,38 C14,38 30,26 30,0 Z"/>
   <g id="dseg">
-    <circle cx="36" cy="46" r="30"/>
-    <rect x="92" y="20" width="28" height="74" rx="14"/><circle cx="106" cy="100" r="20"/>
-    <circle cx="175" cy="46" r="25"/>
-    <rect x="238" y="20" width="32" height="104" rx="16"/><circle cx="254" cy="130" r="23"/>
-    <circle cx="322" cy="46" r="17"/>
+    <use href="#dbosse" transform="translate(45,33) scale(1.15,.95)"/>
+    <use href="#dgoutte" transform="translate(135,33) scale(1.25,1.55)"/>
+    <use href="#dbosse" transform="translate(228,33) scale(.85,.75)"/>
+    <use href="#dgoutte" transform="translate(322,33) scale(1,1.05)"/>
+    <use href="#dbosse" transform="translate(418,33) scale(1.3,1.15)"/>
+    <use href="#dgoutte" transform="translate(540,33) scale(1.4,1.9)"/>
+    <use href="#dbosse" transform="translate(655,33) scale(.95,.85)"/>
   </g>
   <g id="dripline">
-    <rect x="0" y="0" width="1440" height="46"/>
-    <use href="#dseg"/><use href="#dseg" x="360"/><use href="#dseg" x="720"/><use href="#dseg" x="1080"/>
+    <rect x="0" y="0" width="1440" height="34"/>
+    <use href="#dseg"/><use href="#dseg" x="720"/>
+  </g>
+  <g id="dripgloss">
+    <rect x="0" y="0" width="1440" height="30" fill="url(#dgloss)"/>
+    <g fill="#fff" opacity=".55">
+      <circle cx="60" cy="12" r="1.6"/><circle cx="180" cy="20" r="1.2"/><circle cx="300" cy="9" r="1.8"/><circle cx="430" cy="16" r="1.3"/><circle cx="560" cy="22" r="1.7"/><circle cx="640" cy="8" r="1.2"/>
+      <circle cx="780" cy="14" r="1.6"/><circle cx="900" cy="21" r="1.3"/><circle cx="1030" cy="10" r="1.8"/><circle cx="1150" cy="18" r="1.2"/><circle cx="1290" cy="12" r="1.7"/><circle cx="1390" cy="20" r="1.3"/>
+    </g>
+    <g fill="#fff" opacity=".3">
+      <ellipse cx="128" cy="82" rx="5" ry="17" transform="rotate(9 128 82)"/>
+      <ellipse cx="534" cy="98" rx="6" ry="22" transform="rotate(9 534 98)"/>
+      <ellipse cx="848" cy="82" rx="5" ry="17" transform="rotate(9 848 82)"/>
+      <ellipse cx="1254" cy="98" rx="6" ry="22" transform="rotate(9 1254 98)"/>
+    </g>
   </g>
 </svg>
 
@@ -533,6 +559,14 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 
 <!-- ================= HERO 3D ================= -->
 <section class="hero" id="top">
+  <!-- FRAMER : carousel background natif (crossfade) + overlay dégradé -->
+  <div class="hero-slides" aria-hidden="true">
+    <div class="on" style="background-image:url(assets/hero-1.jpg)"></div>
+    <div style="background-image:url(assets/hero-2.jpg)"></div>
+    <div style="background-image:url(assets/hero-3.jpg)"></div>
+    <div style="background-image:url(assets/hero-4.jpg)"></div>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
       <div>
@@ -553,15 +587,19 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
         <div class="jelly-shadow"></div>
         <canvas id="jelly-canvas"></canvas>
         <div class="jelly2d" id="jelly2d" aria-hidden="true">
+          <!-- logo jelly 3 lobes (fidèle au wordmark) -->
           <svg viewBox="0 0 200 170">
             <defs>
               <linearGradient id="j2g" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#FF6EB4"/><stop offset=".55" stop-color="#E0338C"/><stop offset="1" stop-color="#C2186F"/>
+                <stop offset="0" stop-color="#F2A0C8"/><stop offset=".55" stop-color="#E0338C"/><stop offset="1" stop-color="#C2186F"/>
               </linearGradient>
             </defs>
-            <path fill="url(#j2g)" d="M32,152 Q20,152 23,138 C31,96 40,60 57,38 Q77,17 100,17 Q123,17 143,38 C160,60 169,96 177,138 Q180,152 168,152 Z"/>
-            <ellipse cx="70" cy="52" rx="20" ry="30" fill="#fff" opacity=".32" transform="rotate(-24 70 52)"/>
-            <ellipse cx="128" cy="38" rx="7" ry="11" fill="#fff" opacity=".4" transform="rotate(18 128 38)"/>
+            <path fill="url(#j2g)" d="M27,148 Q18,150 21,139 L55,34 Q59,20 71,20 Q80,20 83,29 Q86,18 100,18 Q114,18 117,29 Q120,20 129,20 Q141,20 145,34 L179,139 Q182,150 173,148 Z"/>
+            <path d="M83,32 L73,146" stroke="#C2186F" stroke-width="5" opacity=".45" fill="none" stroke-linecap="round"/>
+            <path d="M117,32 L127,146" stroke="#C2186F" stroke-width="5" opacity=".45" fill="none" stroke-linecap="round"/>
+            <ellipse cx="66" cy="52" rx="7" ry="16" fill="#fff" opacity=".55" transform="rotate(6 66 52)"/>
+            <ellipse cx="100" cy="42" rx="8" ry="15" fill="#fff" opacity=".6"/>
+            <ellipse cx="134" cy="52" rx="7" ry="16" fill="#fff" opacity=".55" transform="rotate(-6 134 52)"/>
           </svg>
         </div>
         <div class="jelly-hint">touche-la, elle rebondit 👆</div>
@@ -570,7 +608,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
   </div>
 </section>
 <!-- coulée jelly : hero (blush) → marquee (encre) -->
-<svg class="drip" style="color:var(--blush);background:var(--ink)" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g></svg>
+<svg class="drip" style="color:var(--blush);background:var(--ink)" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g><use href="#dripgloss"/></svg>
 
 <!-- ================= MARQUEE ================= -->
 <div class="marquee"><div class="marquee-inner">
@@ -648,7 +686,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
   </div>
 </section>
 <!-- coulée jelly : histoire (plum) → tarifs (blanc) -->
-<svg class="drip" style="color:var(--plum);background:#fff" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g></svg>
+<svg class="drip" style="color:var(--plum);background:#fff" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g><use href="#dripgloss"/></svg>
 
 <!-- ================= TARIFS ================= -->
 <section class="tarifs" id="tarifs">
@@ -760,7 +798,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
   </div>
 </section>
 <!-- coulée jelly : résa (plum) → règles (crème) -->
-<svg class="drip" style="color:var(--plum);background:var(--creme)" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g></svg>
+<svg class="drip" style="color:var(--plum);background:var(--creme)" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g><use href="#dripgloss"/></svg>
 
 <!-- ================= RÈGLES ================= -->
 <section id="infos" class="regles">
@@ -784,7 +822,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 <!-- ================= CINÉMA — l'atelier en mouvement (vidéo full-width) ================= -->
 <!-- FRAMER : frame vidéo background + overlay natif -->
 <section class="cinema">
-  <svg class="drip" style="color:var(--creme)" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g></svg>
+  <svg class="drip" style="color:var(--creme)" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g><use href="#dripgloss"/></svg>
   <video src="assets/feed-video.mp4" poster="assets/feed-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
   <div class="cine-inner rv">
     <div class="kicker">L'atelier, en vrai</div>
@@ -825,7 +863,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
   </div>
 </section>
 <!-- coulée jelly : feed (rose) → avis (blush) -->
-<svg class="drip" style="color:var(--jelly);background:var(--blush)" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g></svg>
+<svg class="drip" style="color:var(--jelly);background:var(--blush)" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g><use href="#dripgloss"/></svg>
 
 <!-- ================= AVIS — carousel auto ================= -->
 <section class="avis-sec">
@@ -847,7 +885,7 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
   <div class="wrap"><div class="illu-note rv">Avis d'illustration — à remplacer par tes vrais retours clientes (ton highlight « avis » en est plein).</div></div>
 </section>
 <!-- coulée jelly : avis (blush) → footer (plum) -->
-<svg class="drip" style="color:var(--blush);background:var(--plum)" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g></svg>
+<svg class="drip" style="color:var(--blush);background:var(--plum)" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor"><use href="#dripline"/></g><use href="#dripgloss"/></svg>
 
 <!-- ================= FOOTER ARTISTIQUE (studio intégré) ================= -->
 <footer>
@@ -1063,6 +1101,21 @@ document.getElementById('ok-close').onclick=()=>bg.classList.remove('show');
 bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
 
 /* ============================================================
+   V5.2 — CAROUSEL PHOTOS HERO (crossfade auto)
+   FRAMER : carousel background natif
+   ============================================================ */
+(()=>{
+  const slides=[...document.querySelectorAll('.hero-slides div')];
+  if(slides.length<2)return;
+  let i=0;
+  setInterval(()=>{
+    slides[i].classList.remove('on');
+    i=(i+1)%slides.length;
+    slides[i].classList.add('on');
+  },4200);
+})();
+
+/* ============================================================
    V5 — MENU MOBILE JELLY
    ============================================================ */
 (()=>{
@@ -1171,19 +1224,23 @@ bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
     const cam=new THREE.PerspectiveCamera(35,1,.1,50);
     cam.position.set(0,1.5,7.2);cam.lookAt(0,.5,0);
 
-    const pts=[];
-    pts.push(new THREE.Vector2(0,0));
-    pts.push(new THREE.Vector2(.72,0));
-    pts.push(new THREE.Vector2(1.02,.06));
-    pts.push(new THREE.Vector2(1.05,.16));
-    pts.push(new THREE.Vector2(.98,.3));
-    pts.push(new THREE.Vector2(.82,.62));
-    pts.push(new THREE.Vector2(.66,.94));
-    pts.push(new THREE.Vector2(.52,1.12));
-    pts.push(new THREE.Vector2(.3,1.24));
-    pts.push(new THREE.Vector2(0,1.28));
-    const geo=new THREE.LatheGeometry(pts,72);
-    geo.scale(.88,.88,.88);
+    /* silhouette du LOGO Jelly (3 lobes, évasé vers le bas) extrudée en 3D */
+    const shape=new THREE.Shape();
+    shape.moveTo(-1.02,0);
+    shape.lineTo(1.02,0);
+    shape.quadraticCurveTo(1.14,0,1.1,.14);
+    shape.lineTo(.82,1.24);
+    shape.bezierCurveTo(.84,1.44,.72,1.52,.56,1.5);
+    shape.bezierCurveTo(.44,1.48,.36,1.36,.28,1.32);
+    shape.bezierCurveTo(.26,1.52,.16,1.66,0,1.66);
+    shape.bezierCurveTo(-.16,1.66,-.26,1.52,-.28,1.32);
+    shape.bezierCurveTo(-.36,1.36,-.44,1.48,-.56,1.5);
+    shape.bezierCurveTo(-.72,1.52,-.84,1.44,-.82,1.24);
+    shape.lineTo(-1.1,.14);
+    shape.quadraticCurveTo(-1.14,0,-1.02,0);
+    const geo=new THREE.ExtrudeGeometry(shape,{depth:.5,bevelEnabled:true,bevelThickness:.12,bevelSize:.09,bevelSegments:3,curveSegments:20});
+    geo.center();
+    geo.scale(.92,.92,.92);
     const basePos=geo.attributes.position.array.slice();
 
     const mat=new THREE.MeshPhongMaterial({
@@ -1192,7 +1249,7 @@ bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
       transparent:true,opacity:.97
     });
     const jelly=new THREE.Mesh(geo,mat);
-    jelly.position.y=-.15;
+    jelly.position.y=.5;
     scene.add(jelly);
 
     scene.add(new THREE.AmbientLight(0xFFD9EC,.6));
@@ -1223,12 +1280,11 @@ bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
       if(!reduced){
         for(let i=0;i<pos.count;i++){
           const ox=basePos[i*3],oy=basePos[i*3+1],oz=basePos[i*3+2];
-          const ang=Math.atan2(oz,ox);
-          const w=Math.sin(t*3.1+oy*3.4+ang*2)*.045*(.25+oy*.7)
-                +Math.sin(t*5.3+ang*3+oy*5)*.018*(.2+oy*.6);
-          const r=1+w;
-          pos.array[i*3]=ox*r;
-          pos.array[i*3+2]=oz*r;
+          const h=oy+.9; /* hauteur 0 (base) → ~1.75 (sommet) */
+          const sway=Math.sin(t*2.8+oy*2.6)*.05*(.15+h*.5)
+                   +Math.sin(t*4.9+oy*4.2+ox*1.5)*.02*(.1+h*.45);
+          pos.array[i*3]=ox+sway;
+          pos.array[i*3+2]=oz*(1+Math.sin(t*3.6+oy*3+ox*2)*.05);
           pos.array[i*3+1]=oy;
         }
         pos.needsUpdate=true;
@@ -1238,7 +1294,7 @@ bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
       jelly.rotation.y+=((mx*.7)-jelly.rotation.y)*.06;
       jelly.rotation.x+=((my*.22)-jelly.rotation.x)*.06;
       jelly.position.x+=((mx*.3)-jelly.position.x)*.05;
-      jelly.position.y=-.15+Math.sin(t*1.3)*.05;
+      jelly.position.y=.5+Math.sin(t*1.3)*.05;
       renderer.render(scene,cam);
       requestAnimationFrame(tick);
     }
