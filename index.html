@@ -32,6 +32,12 @@
   --bs-sm:5px 5px 0 var(--ink);
   --grad:linear-gradient(135deg,#FF6EB4 0%,#E0338C 55%,#C2186F 100%);
   --tr:.22s cubic-bezier(.4,0,.2,1);
+  /* accents extraits de ses œuvres (V5.3) : or des charms, améthyste des gems,
+     pervenche des swirls, menthe des sets pastel */
+  --gold:#FFB347;
+  --vio:#B24BF3;
+  --blu:#5B7BFF;
+  --mint:#6FE7B8;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -372,9 +378,9 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 .foot-studio small{font-size:12px;color:rgba(255,214,232,.55)}
 .rer{display:inline-flex;align-items:center;gap:9px;background:#E2231A;color:#fff;font-weight:700;padding:7px 16px;border-radius:999px;font-size:13px;margin-top:12px;border:2.5px solid #fff}
 .rer .badge{background:#fff;color:#E2231A;border-radius:5px;width:21px;height:21px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800}
-.foot-cta{background:var(--jelly);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:17px 32px;font-family:'Baloo 2';font-weight:800;font-size:15px;letter-spacing:.04em;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:5px 5px 0 rgba(255,255,255,.92);transition:var(--tr);white-space:nowrap}
-.foot-cta:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(255,255,255,.92)}
-.foot-cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(255,255,255,.92)}
+.foot-cta{background:var(--jelly);color:#fff;border:3px solid #fff;border-radius:999px;padding:17px 32px;font-family:'Baloo 2';font-weight:800;font-size:15px;letter-spacing:.04em;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 0 26px rgba(224,51,140,.55);transition:var(--tr);white-space:nowrap}
+.foot-cta:hover{transform:translateY(-3px);box-shadow:0 0 44px rgba(224,51,140,.85)}
+.foot-cta:active{transform:translateY(1px)}
 .foot-bottom{max-width:1180px;margin:52px auto 0;padding:26px 24px 0;border-top:2px dashed rgba(255,143,198,.25);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:11px;letter-spacing:.06em;opacity:.6}
 .foot-bottom .champa{color:var(--jelly)}
 @media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}.foot-word{white-space:normal}}
@@ -435,6 +441,36 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 .modal .ref{font-family:'Baloo 2';font-size:11px;letter-spacing:.24em;color:var(--jelly);font-weight:800;text-transform:uppercase}
 .spin-loader{width:40px;height:40px;border-radius:50%;border:4px solid var(--blush);border-top-color:var(--jelly);animation:rot 1s linear infinite;margin:18px auto}
 @keyframes rot{to{transform:rotate(360deg)}}
+
+/* ---------- V5.3 — HARMONIE COULEURS (palette extraite de ses sets) + NÉON ----------
+   Rose dominant ~80 % · accents ≤20 % : or (charms), améthyste (gems),
+   pervenche (swirls), menthe (pastels). Glows néon sur sections sombres. */
+.histoire h2.display .hollow,.resa h2.display .hollow{text-shadow:0 0 16px rgba(224,51,140,.6),0 0 42px rgba(224,51,140,.38)}
+.feed h2.display .hollow{text-shadow:0 0 16px rgba(255,255,255,.5),0 0 40px rgba(255,255,255,.3)}
+.cine-inner h2 .hollow{text-shadow:0 0 18px rgba(255,255,255,.55),0 0 46px rgba(224,51,140,.5)}
+.chap-num{-webkit-text-stroke-color:var(--vio);text-shadow:0 0 24px rgba(178,75,243,.5)}
+.chapitre blockquote{border-left-color:var(--vio)}
+.chapitre blockquote mark{background:linear-gradient(transparent 60%,rgba(178,75,243,.5) 60%)}
+.avis .stars{color:var(--gold);text-shadow:0 0 10px rgba(255,179,71,.75)}
+.gw:nth-child(3) .tag{background:var(--vio);color:#fff}
+.gw:nth-child(5) .tag{background:var(--mint);color:var(--ink)}
+.gw:nth-child(8) .tag{background:var(--gold);color:var(--ink)}
+.rule:nth-child(2) .num{background:var(--vio)}
+.rule:nth-child(4) .num{background:var(--gold);color:var(--ink)}
+.rule:nth-child(6) .num{background:var(--blu)}
+.jam-fab{animation:fabGlow 2.6s ease-in-out infinite}
+@keyframes fabGlow{0%,100%{box-shadow:5px 5px 0 var(--ink),0 0 16px rgba(224,51,140,.5)}50%{box-shadow:5px 5px 0 var(--ink),0 0 34px rgba(224,51,140,.85)}}
+.btn-solid:hover{box-shadow:7px 7px 0 var(--ink),0 0 26px rgba(224,51,140,.55)}
+.pillnav a.cta{box-shadow:0 0 14px rgba(224,51,140,.4)}
+.marquee-inner .champa{filter:drop-shadow(0 0 6px rgba(224,51,140,.9))}
+.marquee-inner span:nth-of-type(4n) .champa{color:var(--gold);filter:drop-shadow(0 0 6px rgba(255,179,71,.9))}
+.foot-word{text-shadow:0 0 30px rgba(224,51,140,.3)}
+.opt.on{box-shadow:0 12px 28px -8px rgba(224,51,140,.6),0 0 22px rgba(224,51,140,.45)}
+.day.on,.slot.on{box-shadow:0 0 18px rgba(224,51,140,.5)}
+.social-float a:hover{box-shadow:5px 5px 0 var(--ink),0 0 18px rgba(224,51,140,.55)}
+.up .ok-badge{background:var(--mint);color:var(--ink)}
+.hist-visual .toile{box-shadow:0 30px 70px -20px rgba(224,51,140,.5),0 0 34px rgba(178,75,243,.28)}
+@media(prefers-reduced-motion:reduce){.jam-fab{animation:none}}
 
 /* ---------- MOBILE global (page plus courte) ---------- */
 @media(max-width:900px){
