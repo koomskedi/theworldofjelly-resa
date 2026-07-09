@@ -1238,19 +1238,18 @@ bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
       jelly.position.x+=((mx*.3)-jelly.position.x)*.05;
       jelly.position.y=-.15+Math.sin(t*1.3)*.05;
       renderer.render(scene,cam);
-      /* vérif pixels réels : si le GPU ne dessine rien (canvas transparent), bascule 2D */
-      if(!framed&&t>.1){
-        try{
-          const gl=renderer.getContext();
-          const px=new Uint8Array(400);
-          gl.readPixels((gl.drawingBufferWidth>>1)-5,(gl.drawingBufferHeight>>1)-5,10,10,gl.RGBA,gl.UNSIGNED_BYTE,px);
-          let any=false;for(let i=3;i<px.length;i+=4)if(px[i]>0){any=true;break}
-          if(!any){fallback();return}
-        }catch(e){}
-        framed=true;
-      }
       requestAnimationFrame(tick);
     }
+    /* vérif SYNCHRONE frame 1 (indépendante de requestAnimationFrame) :
+       si le GPU ne dessine rien → jelly 2D animée */
+    renderer.render(scene,cam);
+    try{
+      const gl=renderer.getContext();
+      const px=new Uint8Array(400);
+      gl.readPixels((gl.drawingBufferWidth>>1)-5,(gl.drawingBufferHeight>>1)-5,10,10,gl.RGBA,gl.UNSIGNED_BYTE,px);
+      let any=false;for(let i=3;i<px.length;i+=4)if(px[i]>0){any=true;break}
+      if(any)framed=true;else{fallback();return}
+    }catch(e){fallback();return}
     tick();
   }catch(e){fallback()}
 })();
