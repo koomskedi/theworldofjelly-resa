@@ -505,6 +505,9 @@ footer{background:var(--plum);color:rgba(255,214,232,.6);padding:70px 0 130px;ov
 /* marquee : mots fluo alternés sur l'encre */
 .marquee-inner span:nth-of-type(4n+3){color:var(--neon);text-shadow:0 0 12px rgba(168,255,62,.55)}
 .marquee-inner span:nth-of-type(8n+1){color:var(--gold);text-shadow:0 0 12px rgba(255,179,71,.5)}
+/* hero : titre néon */
+.hero h1 .row2{text-shadow:0 0 18px rgba(224,51,140,.55),0 0 46px rgba(224,51,140,.3)}
+.hero h1 .hollow{-webkit-text-stroke-color:var(--magenta);text-shadow:0 0 22px rgba(224,51,140,.4)}
 /* hero : stats tricolores + sticker glow */
 .hero-stats>div:nth-child(2) b{color:var(--vio)}
 .hero-stats>div:nth-child(3) b{color:#E8890C}
@@ -1331,6 +1334,14 @@ bg.onclick=e=>{if(e.target===bg)bg.classList.remove('show')};
     const jelly=new THREE.Mesh(geo,mat);
     jelly.position.y=.5;
     scene.add(jelly);
+    /* les 2 séparations verticales du logo (3 lobes) */
+    const sepMat=new THREE.MeshBasicMaterial({color:0xC2186F,transparent:true,opacity:.5});
+    const sepGeo=new THREE.BoxGeometry(.05,1.28,.02);
+    const sep1=new THREE.Mesh(sepGeo,sepMat);
+    sep1.position.set(.31,-.08,.38);sep1.rotation.z=-.09;
+    const sep2=new THREE.Mesh(sepGeo,sepMat);
+    sep2.position.set(-.31,-.08,.38);sep2.rotation.z=.09;
+    jelly.add(sep1);jelly.add(sep2);
 
     scene.add(new THREE.AmbientLight(0xFFD9EC,.6));
     const key=new THREE.DirectionalLight(0xffffff,.85);key.position.set(2.4,3.2,3.6);scene.add(key);
